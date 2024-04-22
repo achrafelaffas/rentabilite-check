@@ -4,8 +4,5 @@ Rentabilite360 est une application web conçue avec le framework Spring Boot pou
 
 ## Contributeurs
 
-- **Achraf EL AFFAS**
-    - GitHub: [achrafelaffas](https://github.com/achrafelaffas)
-
-- **Charaf BELAYACHI**
-    - GitHub: [Achrafbelayachi](https://github.com/Achrafbelayachi)
+- **[Achraf EL AFFAS](https://github.com/achrafelaffas)**
+- **[Charaf BELAYACHI](https://github.com/Achrafbelayachi)**
