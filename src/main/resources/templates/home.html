@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" class="js">
+
+<head>
+    <!-- Page Title  -->
+    <title>Home | Rentabilité Check</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" th:href="@{/home/css/dashlite.css}">
+    <link id="skin-default" rel="stylesheet" href="./assets/css/theme.css?ver=3.2.2">
+</head>
+
+<body class="nk-body bg-white npc-landing ">
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <header class="header has-header-main-s1 bg-lighter" id="home">
+            <div class="header-main header-main-s1 is-sticky is-transparent">
+                <div class="container header-container">
+                    <div class="header-wrap">
+                        <!--<div class="header-logo">
+                            <a href="html/index.html" class="logo-link">
+                                <img class="logo-light logo-img" src="./images/logo.png" srcset="./images/logo2x.png 2x" alt="logo">
+                                <img class="logo-dark logo-img" src="./images/logo-dark.png" srcset="./images/logo-dark2x.png 2x" alt="logo-dark">
+                            </a>
+                        </div>-->
+                        <div class="header-toggle">
+                            <button class="menu-toggler" data-target="mainNav">
+                                <em class="menu-on icon ni ni-menu"></em>
+                                <em class="menu-off icon ni ni-cross"></em>
+                            </button>
+                        </div><!-- .header-nav-toggle -->
+                        <nav class="header-menu" data-content="mainNav">
+                            <ul class="menu-list ms-lg-auto">
+                                <li class="menu-item"><a href="#home" class="menu-link nav-link">Home</a></li>
+                                <li class="menu-item"><a href="#feature" class="menu-link nav-link">Fonctionalités</a>
+                                </li>
+                                <li class="menu-item"><a href="#pricing" class="menu-link nav-link">Prix</a></li>
+                            </ul>
+                            <ul class="menu-btns">
+                                <li>
+                                    <a th:href="@{/dashboard}" class="btn btn-primary btn-lg">Commancer</a>
+                                </li>
+                            </ul>
+                        </nav><!-- .nk-nav-menu -->
+                    </div><!-- .header-warp-->
+                </div><!-- .container-->
+            </div><!-- .header-main-->
+        </header><!-- .header -->
+    </div>
+    <!-- main @e -->
+</div>
+<!-- app-root @e -->
+<!-- JavaScript -->
+<script th:src="@{/home/js/scripts.js}"></script>
+<script th:src="@{/home/js/bundle.js}"></script>
+</body>
+
+</html>
+

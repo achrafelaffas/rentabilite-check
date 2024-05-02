@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!-- Titre de la page  -->
+    <title>Dashboard - Rentabilité Check</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" th:href="@{/css/dashlite.css}">
+</head>
+
+<body class="nk-body ui-rounder has-sidebar ">
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- sidebar @s -->
+        <div class="nk-sidebar is-light nk-sidebar-fixed is-light " data-content="sidebarMenu">
+            <div class="nk-sidebar-element nk-sidebar-head">
+                <div class="nk-menu-trigger me-n2">
+                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
+                            class="icon ni ni-arrow-left"></em></a>
+                </div>
+            </div><!-- .nk-sidebar-element -->
+            <div class="nk-sidebar-element">
+                <div class="nk-sidebar-content">
+                    <div class="nk-sidebar-menu" data-simplebar>
+                        <ul class="nk-menu">
+                            <li class="nk-menu-item">
+                                <a href="/" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
+                                    <span class="nk-menu-text">Dashboard</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                            <li class="nk-menu-item">
+                                <a href="/mes-projets" class="nk-menu-link">
+                                    <span class="nk-menu-icon"><em class="icon ni ni-link-group"></em></span>
+                                    <span class="nk-menu-text">Mes Projets</span>
+                                </a>
+                            </li><!-- .nk-menu-item -->
+                        </ul><!-- .nk-menu -->
+                    </div><!-- .nk-sidebar-menu -->
+                </div><!-- .nk-sidebar-content -->
+            </div><!-- .nk-sidebar-element -->
+        </div>
+        <!-- sidebar @e -->
+        <!-- wrap @s -->
+        <div class="nk-wrap ">
+            <!-- main header @s -->
+            <div class="nk-header is-light nk-header-fixed is-light">
+                <div class="container-xl wide-xl">
+                    <div class="nk-header-wrap">
+                        <div class="nk-menu-trigger d-xl-none ms-n1 me-3">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                    class="icon ni ni-menu"></em></a>
+                        </div>
+                        <div class="nk-header-tools">
+                            <ul class="nk-quick-nav">
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+                                        <div class="user-toggle">
+                                            <div class="user-avatar sm">
+                                                <em class="icon ni ni-user-alt"></em>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
+                                        <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                            <div class="user-card">
+                                                <div class="user-avatar">
+                                                    <span>AB</span>
+                                                </div>
+                                                <div class="user-info">
+                                                    <span class="lead-text">Abu Bin Ishtiyak</span>
+                                                    <span class="sub-text">info@softnio.com</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="html/user-profile-regular.html"><em
+                                                        class="icon ni ni-user-alt"></em><span>View Profile</span></a>
+                                                </li>
+                                                <li><a href="html/user-profile-setting.html"><em
+                                                        class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
+                                                </li>
+                                                <li><a href="html/user-profile-activity.html"><em
+                                                        class="icon ni ni-activity-alt"></em><span>Login Activity</span></a>
+                                                </li>
+                                                <li><a class="dark-switch" href="#"><em
+                                                        class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li><a href="#"><em
+                                                        class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div><!-- .nk-header-tools -->
+                    </div><!-- .nk-header-wrap -->
+                </div><!-- .container-fliud -->
+            </div>
+            <!-- main header @e -->
+            <!-- content @s -->
+            <div class="nk-content nk-content-fluid">
+                <div class="container-xl wide-xl">
+                    <div class="nk-content-body">
+                        <div class="nk-block-head nk-block-head-sm">
+                            <div class="nk-block-between">
+                                <div class="nk-block-head-content">
+                                    <h3 class="nk-block-title page-title">Ma Dashboard</h3>
+                                    <div class="nk-block-des text-soft">
+                                        <p>Bienvenue au Rentabilité Dashboard.</p>
+                                    </div>
+                                </div><!-- .nk-block-head-content -->
+                                <div class="nk-block-head-content">
+                                    <div class="toggle-wrap nk-block-tools-toggle">
+                                        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                           data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                        <div class="toggle-expand-content" data-content="pageMenu">
+                                            <ul class="nk-block-tools g-3">
+                                                <li>
+                                                    <a href="#"
+                                                       class="dropdown-toggle btn btn-primary btn-dim"
+                                                       data-bs-toggle="dropdown"><em class="icon ni ni-plus"></em><span><span
+                                                            class="d-md-none">Add</span><span class="d-none d-md-block">Add Campaign</span></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head-content -->
+                            </div><!-- .nk-block-between -->
+                        </div><!-- .nk-block-head -->
+                        <div class="nk-block">
+                            <div class="row g-gs">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-100 bg-primary">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <div class="card-inner pt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="flex-item">
+                                                        <div class="text-white d-flex flex-wrap">
+                                                            <span class="fs-2 me-1">56.8K</span>
+                                                            <span class="align-self-end fs-14px pb-1"><em
+                                                                    class="icon ni ni-arrow-long-up"></em>12.4%</span>
+                                                        </div>
+                                                        <h6 class="text-white">Running Campaign</h6>
+                                                    </div>
+                                                    <div class="card-tools me-n1">
+                                                        <div class="dropdown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle btn btn-icon btn-sm btn-trigger on-dark"
+                                                               data-bs-toggle="dropdown"><em
+                                                                    class="icon ni ni-more-v"></em></a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#" class="active"><span>15 Days</span></a>
+                                                                    </li>
+                                                                    <li><a href="#"><span>30 Days</span></a></li>
+                                                                    <li><a href="#"><span>3 Months</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                            <div class="nk-ck-wrap mt-auto overflow-hidden rounded-bottom">
+                                                <div class="nk-cmwg1-ck">
+                                                    <canvas class="campaign-line-chart-s1 rounded-bottom"
+                                                            id="runningCampaign"></canvas>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-100 bg-info">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <div class="card-inner pt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="flex-item">
+                                                        <div class="text-white d-flex flex-wrap">
+                                                            <span class="fs-2 me-1">857.6K</span>
+                                                            <span class="align-self-end fs-14px pb-1"><em
+                                                                    class="icon ni ni-arrow-long-up"></em>12.4%</span>
+                                                        </div>
+                                                        <h6 class="text-white">Total Audience</h6>
+                                                    </div>
+                                                    <div class="card-tools me-n1">
+                                                        <div class="dropdown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle btn btn-icon btn-sm btn-trigger on-dark"
+                                                               data-bs-toggle="dropdown"><em
+                                                                    class="icon ni ni-more-v"></em></a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#" class="active"><span>15 Days</span></a>
+                                                                    </li>
+                                                                    <li><a href="#"><span>30 Days</span></a></li>
+                                                                    <li><a href="#"><span>3 Months</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                            <div class="nk-cmwg1-ck mt-auto">
+                                                <canvas class="campaign-line-chart-s1 rounded-bottom"
+                                                        id="totalAudience"></canvas>
+                                            </div>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-100 bg-warning">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <div class="card-inner pt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="flex-item">
+                                                        <div class="text-white d-flex flex-wrap">
+                                                            <span class="fs-2 me-1">9.3K</span>
+                                                            <span class="align-self-end fs-14px pb-1"><em
+                                                                    class="icon ni ni-arrow-long-up"></em>12.4%</span>
+                                                        </div>
+                                                        <h6 class="text-white">Avg. Rating</h6>
+                                                    </div>
+                                                    <div class="card-tools me-n1">
+                                                        <div class="dropdown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle btn btn-icon btn-sm btn-trigger on-dark"
+                                                               data-bs-toggle="dropdown"><em
+                                                                    class="icon ni ni-more-v"></em></a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#" class="active"><span>15 Days</span></a>
+                                                                    </li>
+                                                                    <li><a href="#"><span>30 Days</span></a></li>
+                                                                    <li><a href="#"><span>3 Months</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                            <div class="nk-ck-wrap mt-auto overflow-hidden rounded-bottom">
+                                                <div class="nk-cmwg1-ck">
+                                                    <canvas class="campaign-bar-chart-s1 rounded-bottom"
+                                                            id="avgRating"></canvas>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-100 bg-danger">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <div class="card-inner pt-3">
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="flex-item">
+                                                        <div class="text-white d-flex flex-wrap">
+                                                            <span class="fs-2 me-1">175.2K</span>
+                                                            <span class="align-self-end fs-14px pb-1"><em
+                                                                    class="icon ni ni-arrow-long-up"></em>12.4%</span>
+                                                        </div>
+                                                        <h6 class="text-white">Subscriber</h6>
+                                                    </div>
+                                                    <div class="card-tools me-n1">
+                                                        <div class="dropdown">
+                                                            <a href="#"
+                                                               class="dropdown-toggle btn btn-icon btn-sm btn-trigger on-dark"
+                                                               data-bs-toggle="dropdown"><em
+                                                                    class="icon ni ni-more-v"></em></a>
+                                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-end">
+                                                                <ul class="link-list-opt no-bdr">
+                                                                    <li><a href="#" class="active"><span>15 Days</span></a>
+                                                                    </li>
+                                                                    <li><a href="#"><span>30 Days</span></a></li>
+                                                                    <li><a href="#"><span>3 Months</span></a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><!-- .card-inner -->
+                                            <div class="nk-ck-wrap mt-auto overflow-hidden rounded-bottom">
+                                                <div class="nk-cmwg1-ck">
+                                                    <canvas class="campaign-line-chart-s1 rounded-bottom"
+                                                            id="newSubscriber"></canvas>
+                                                </div>
+                                            </div>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+                            </div><!-- .row -->
+                        </div><!-- .nk-block -->
+                    </div>
+                </div>
+            </div>
+            <!-- content @e -->
+            <!-- footer @s -->
+            <div class="nk-footer">
+                <div class="container-xl wide-xl">
+                    <div class="nk-footer-wrap">
+                        <div class="nk-footer-copyright"> &copy; 2023 DashLite. Template by <a
+                                href="https://softnio.com" target="_blank">Softnio</a></div>
+                    </div>
+                </div>
+            </div>
+            <!-- footer @e -->
+        </div>
+        <!-- wrap @e -->
+    </div>
+    <!-- main @e -->
+</div>
+<!-- app-root @e -->
+<!-- select region modal -->
+<!-- JavaScript -->
+<script type="text/javascript" th:src="@{/js/bundle.js}"></script>
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+
+</html>
