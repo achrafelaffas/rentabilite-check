@@ -1,10 +1,10 @@
-package rentabilite360;
+package rentabilite_check;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Rentabilite360ApplicationTests {
+class RentabiliteCheckApplicationTests {
 
     @Test
     void contextLoads() {
