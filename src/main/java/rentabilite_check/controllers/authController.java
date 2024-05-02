@@ -22,7 +22,7 @@ public class authController {
     }
 
     @PostMapping("create")
-    public String createUser(User user, Model model) {
+    public String createUser(User user) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String encry_password = bCryptPasswordEncoder.encode(user.getMotdepasse());
         user.setMotdepasse(encry_password);
@@ -31,7 +31,7 @@ public class authController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "user/auth/login";
     }
 }
