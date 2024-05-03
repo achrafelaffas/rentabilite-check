@@ -13,34 +13,8 @@
     <!-- main @s -->
     <div class="nk-main ">
         <!-- sidebar @s -->
-        <div class="nk-sidebar is-light nk-sidebar-fixed is-light " data-content="sidebarMenu">
-            <div class="nk-sidebar-element nk-sidebar-head">
-                <div class="nk-menu-trigger me-n2">
-                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em
-                            class="icon ni ni-arrow-left"></em></a>
-                </div>
-            </div><!-- .nk-sidebar-element -->
-            <div class="nk-sidebar-element">
-                <div class="nk-sidebar-content">
-                    <div class="nk-sidebar-menu" data-simplebar>
-                        <ul class="nk-menu">
-                            <li class="nk-menu-item">
-                                <a href="/" class="nk-menu-link">
-                                    <span class="nk-menu-icon"><em class="icon ni ni-dashboard"></em></span>
-                                    <span class="nk-menu-text">Dashboard</span>
-                                </a>
-                            </li><!-- .nk-menu-item -->
-                            <li class="nk-menu-item">
-                                <a href="/mes-projets" class="nk-menu-link">
-                                    <span class="nk-menu-icon"><em class="icon ni ni-link-group"></em></span>
-                                    <span class="nk-menu-text">Mes Projets</span>
-                                </a>
-                            </li><!-- .nk-menu-item -->
-                        </ul><!-- .nk-menu -->
-                    </div><!-- .nk-sidebar-menu -->
-                </div><!-- .nk-sidebar-content -->
-            </div><!-- .nk-sidebar-element -->
-        </div>
+        <!-- inclusion du sidebar -->
+        <div th:replace="fragments/sidebar::sidebar"></div>
         <!-- sidebar @e -->
         <!-- wrap @s -->
         <div class="nk-wrap ">
@@ -52,53 +26,8 @@
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
                                     class="icon ni ni-menu"></em></a>
                         </div>
-                        <div class="nk-header-tools">
-                            <ul class="nk-quick-nav">
-                                <li class="dropdown user-dropdown">
-                                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                                        <div class="user-toggle">
-                                            <div class="user-avatar sm">
-                                                <em class="icon ni ni-user-alt"></em>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-end">
-                                        <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
-                                            <div class="user-card">
-                                                <div class="user-avatar">
-                                                    <span>AB</span>
-                                                </div>
-                                                <div class="user-info">
-                                                    <span class="lead-text">Abu Bin Ishtiyak</span>
-                                                    <span class="sub-text">info@softnio.com</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown-inner">
-                                            <ul class="link-list">
-                                                <li><a href="html/user-profile-regular.html"><em
-                                                        class="icon ni ni-user-alt"></em><span>View Profile</span></a>
-                                                </li>
-                                                <li><a href="html/user-profile-setting.html"><em
-                                                        class="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
-                                                </li>
-                                                <li><a href="html/user-profile-activity.html"><em
-                                                        class="icon ni ni-activity-alt"></em><span>Login Activity</span></a>
-                                                </li>
-                                                <li><a class="dark-switch" href="#"><em
-                                                        class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="dropdown-inner">
-                                            <ul class="link-list">
-                                                <li><a th:href="@{/logout}"><em
-                                                        class="icon ni ni-signout"></em><span>Sign out</span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div><!-- .nk-header-tools -->
+                        <!-- inclusion du tools pour afficher les information de l'utilisateur -->
+                        <div th:replace="fragments/header-tools::header-tools"></div>
                     </div><!-- .nk-header-wrap -->
                 </div><!-- .container-fliud -->
             </div>
@@ -300,14 +229,7 @@
             </div>
             <!-- content @e -->
             <!-- footer @s -->
-            <div class="nk-footer">
-                <div class="container-xl wide-xl">
-                    <div class="nk-footer-wrap">
-                        <div class="nk-footer-copyright"> &copy; 2023 DashLite. Template by <a
-                                href="https://softnio.com" target="_blank">Softnio</a></div>
-                    </div>
-                </div>
-            </div>
+            <div th:replace="fragments/footer::footer"></div>
             <!-- footer @e -->
         </div>
         <!-- wrap @e -->
