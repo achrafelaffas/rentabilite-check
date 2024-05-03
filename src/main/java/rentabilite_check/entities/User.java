@@ -2,6 +2,8 @@ package rentabilite_check.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -14,6 +16,9 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String motdepasse;
+
+    @OneToMany(cascade=CascadeType.ALL,mappedBy="user")
+    private List<Projet> projets;
 
     public User() {
     }
