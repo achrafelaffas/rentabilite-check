@@ -1,5 +1,6 @@
 package rentabilite_check.entities;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -120,6 +121,62 @@ public class Projet {
         this.drci = drci;
     }
 
+    public List<Investissement> getInvesstissements() {
+        return invesstissements;
+    }
+
+    public void setInvesstissements(List<Investissement> invesstissements) {
+        this.invesstissements = invesstissements;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<AugmentationBFR> getAugBFRs() {
+        return augBFRs;
+    }
+
+    public void setAugBFRs(List<AugmentationBFR> augBFRs) {
+        this.augBFRs = augBFRs;
+    }
+
+    public List<RecuperationBFR> getRecBFRs() {
+        return recBFRs;
+    }
+
+    public void setRecBFRs(List<RecuperationBFR> recBFRs) {
+        this.recBFRs = recBFRs;
+    }
+
+    public List<ChargesFixes> getChargesfixes() {
+        return chargesfixes;
+    }
+
+    public void setChargesfixes(List<ChargesFixes> chargesfixes) {
+        this.chargesfixes = chargesfixes;
+    }
+
+    public List<ChargesVariables> getChargesvariables() {
+        return chargesvariables;
+    }
+
+    public void setChargesvariables(List<ChargesVariables> chargesvariables) {
+        this.chargesvariables = chargesvariables;
+    }
+
+    public List<ChiffreAffaire> getChiffres() {
+        return chiffres;
+    }
+
+    public void setChiffres(List<ChiffreAffaire> chiffres) {
+        this.chiffres = chiffres;
+    }
+
     public float calculerVAN() {
         // TODO: implement
         return 0;
@@ -139,5 +196,4 @@ public class Projet {
         // TODO: implement
         return 0;
     }
-
 }

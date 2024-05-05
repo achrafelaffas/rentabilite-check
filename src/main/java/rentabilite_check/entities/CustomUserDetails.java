@@ -8,9 +8,9 @@ import java.util.List;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class CustomUserDetails implements UserDetails {
-    private User utilisateur;
-    public CustomUserDetails(User utilisateur) {
-        this.utilisateur = utilisateur;
+    private User user;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -19,12 +19,12 @@ public class CustomUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return utilisateur.getMotdepasse();
+        return user.getMotdepasse();
     }
 
     @Override
     public String getUsername() {
-        return utilisateur.getEmail();
+        return user.getEmail();
     }
 
     @Override
@@ -45,5 +45,9 @@ public class CustomUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

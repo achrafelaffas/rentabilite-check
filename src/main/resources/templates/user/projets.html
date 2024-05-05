@@ -84,6 +84,16 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            <tr th:each="projet : ${projets}">
+                                                <td th:text="${projet.idProjet}"></td>
+                                                <td  th:text="${projet.nom}"></td>
+                                                <td  th:text="${projet.tauxActualisation}"></td>
+                                                <td  th:text="${projet.impotSociete}"></td>
+                                                <td  th:text="${projet.duree}"></td>
+                                                <td  th:text="${projet.van}"></td>
+                                                <td  th:text="${projet.ip}"></td>
+                                                <td  th:text="${projet.drci}"></td>
+                                            </tr>
                                             </tbody>
                                             <tfoot></tfoot>
                                         </table>
@@ -108,6 +118,8 @@
 <!-- JavaScript -->
 <script type="text/javascript" th:src="@{/js/bundle.js}"></script>
 <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+<script type="text/javascript" th:src="@{/js/projets.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
 
@@ -122,24 +134,45 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form action="#" class="form-validate is-alter">
+                <form class="form-validate is-alter" id="AjouetProjetForm">
 
                     <div class="form-group">
                         <label class="form-label" for="nom">Le nom du projet</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nom" placeholder="Entrer le nom">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer le nom">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="duree">Durée</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="duree" placeholder="Entrer la durée">
+                            <input type="number" class="form-control" id="duree" name="duree" placeholder="Entrer la durée">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-lg btn-primary">Enregistrer les Informations</button>
+                        <label class="form-label" for="impotSociete">Impot sur société</label>
+                        <div class="form-control-wrap">
+                            <input type="number" class="form-control" id="impotSociete" name="impotSociete" placeholder="Entrer l'IS">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tauxActualisation">Le taux d'actualisation</label>
+                        <div class="form-control-wrap">
+                            <input type="number" class="form-control" id="tauxActualisation" name="tauxActualisation" placeholder="Entrer le taux d'actualisation">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="description">La description</label>
+                        <div class="form-control-wrap">
+                            <textarea class="form-control" id="description" name="description" placeholder="Entrer la description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button onclick="InsererProjet()" class="btn btn-lg btn-primary">Enregistrer les Informations</button>
                     </div>
                 </form>
             </div>
