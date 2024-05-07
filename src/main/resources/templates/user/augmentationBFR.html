@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- Titre de la page  -->
-    <title>Projets - Rentabilité Check</title>
+    <title>Augmentation BFR - Rentabilité Check</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" th:href="@{/css/dashlite.css}">
 </head>
@@ -39,9 +39,9 @@
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
-                                    <h3 class="nk-block-title page-title">Mes Projets</h3>
+                                    <h3 class="nk-block-title page-title">Augmentation BFR</h3>
                                     <div class="nk-block-des text-soft">
-                                        <p>La liste de vos projets sur la platforme</p>
+                                        <p>La liste de vos augmentations BFR</p>
                                     </div>
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
@@ -51,12 +51,13 @@
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
                                                 <li>
-                                                    <button data-bs-toggle="modal" data-bs-target="#ajouterProjetModal"
+                                                    <button data-bs-toggle="modal" data-bs-target="#ajouterAugBFRModal"
+                                                            onclick="getProjets()"
                                                             class="dropdown-toggle btn btn-primary btn-dim">
                                                         <em class="icon ni ni-plus"></em>
                                                         <span>
-                                                            <span class="d-md-none">Add</span>
-                                                            <span class="d-none d-md-block">Ajouter Projet</span>
+                                                            <span class="d-md-none">Ajouter</span>
+                                                            <span class="d-none d-md-block">Ajouter une augmentation</span>
                                                         </span>
                                                     </button>
                                                 </li>
@@ -75,34 +76,16 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nom</th>
-                                                <th>Taux d'actualisation</th>
-                                                <th>IS</th>
-                                                <th>Durée</th>
-                                                <th>VAN</th>
-                                                <th>IP</th>
-                                                <th>DRCI</th>
-                                                <th></th>
+                                                <th>Montant</th>
+                                                <th>Année</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="projet : ${projets}">
-                                                <td th:text="${projet.idProjet}"></td>
-                                                <td th:text="${projet.nom}"></td>
-                                                <td th:text="${projet.tauxActualisation}"></td>
-                                                <td th:text="${projet.impotSociete}"></td>
-                                                <td th:text="${projet.duree}"></td>
-                                                <td th:text="${projet.van}"></td>
-                                                <td th:text="${projet.ip}"></td>
-                                                <td th:text="${projet.drci}"></td>
-                                                <td class="d-flex justify-around h5">
-                                                    <a href="#"
-                                                       th:attr="onclick='updateProjet(\'' + ${projet.idProjet} + '\')'">
-                                                        <em class="icon ni ni-pen-alt-fill"></em>
-                                                    </a>
-                                                    <a th:href="@{'/supprimer-projet?idProjet=' + ${projet.idProjet}}">
-                                                        <em class="icon ni ni-trash-fill"></em>
-                                                    </a>
-                                                </td>
+                                            <tr th:each="aug : ${augbfrlist}">
+                                                <td th:text="${aug.idaUGbFR}"></td>
+                                                <td th:text="${aug.nom}"></td>
+                                                <td th:text="${aug.montant}"></td>
+                                                <td th:text="${aug.annee}"></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -127,65 +110,58 @@
 <!-- JavaScript -->
 <script type="text/javascript" th:src="@{/js/bundle.js}"></script>
 <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
-<script type="text/javascript" th:src="@{/js/projets.js}"></script>
+<script type="text/javascript" th:src="@{/js/augmentationBFR.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
 
 
-<div class="modal fade" id="ajouterProjetModal">
+<div class="modal fade" id="ajouterAugBFRModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ajouter un projet</h5>
+                <h5 class="modal-title">Ajouter une augmentation BFR</h5>
                 <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>
             </div>
             <div class="modal-body">
-                <form class="form-validate is-alter" id="AjouetProjetForm">
+                <form class="form-validate is-alter" id="AjouetAugBFRForm">
 
                     <div class="form-group">
-                        <label class="form-label" for="nom">Le nom du projet</label>
+                        <label class="form-label" for="nom">Le nom d'augmentation</label>
                         <div class="form-control-wrap">
                             <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer le nom">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="duree">Durée</label>
+                        <label class="form-label" for="montant">Montant</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="duree" name="duree"
+                            <input type="number" class="form-control" id="montant" name="montant"
                                    placeholder="Entrer la durée">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="impotSociete">Impot sur société</label>
+                        <label class="form-label" for="annee">Année</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="impotSociete" name="impotSociete"
-                                   placeholder="Entrer l'IS">
+                            <input type="date" class="form-control" id="annee"
+                                   name="annee" placeholder="Choisir l'année">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="tauxActualisation">Le taux d'actualisation</label>
+                        <label class="form-label" for="projets">Le taux d'actualisation</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="tauxActualisation" name="tauxActualisation"
-                                   placeholder="Entrer le taux d'actualisation">
+                            <select class="form-select js-select2" name="projet" data-search="on" id="projets">
+
+                                <option value="option_select_name">Option select name</option>
+                            </select>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <label class="form-label" for="description">La description</label>
-                        <div class="form-control-wrap">
-                            <textarea class="form-control" id="description" name="description"
-                                      placeholder="Entrer la description"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <button onclick="InsererProjet()" class="btn btn-lg btn-primary">Enregistrer les Informations
+                        <button onclick="InsererAugBFR()" class="btn btn-lg btn-primary">Enregistrer les Informations
                         </button>
                     </div>
                 </form>
@@ -250,7 +226,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button onclick="sendProjetUpdate()" class="btn btn-lg btn-primary">Enregistrer les
+                        <button onclick="" class="btn btn-lg btn-primary">Enregistrer les
                             Modifications
                         </button>
                     </div>

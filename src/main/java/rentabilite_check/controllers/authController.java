@@ -7,13 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import rentabilite_check.entities.User;
-import rentabilite_check.repositories.UtilisateurRepository;
+import rentabilite_check.repositories.UserRepository;
 
 @Controller
 public class authController {
 
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private UserRepository utilisateurRepository;
 
     @GetMapping("/register")
     public String register(Model model) {

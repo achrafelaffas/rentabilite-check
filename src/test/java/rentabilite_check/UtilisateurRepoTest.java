@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import rentabilite_check.entities.User;
-import rentabilite_check.repositories.UtilisateurRepository;
+import rentabilite_check.repositories.UserRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UtilisateurRepoTest {
     @Autowired
-    UtilisateurRepository utilisateurRepository;
+    UserRepository utilisateurRepository;
     @Autowired
     TestEntityManager entityManager;
 

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import rentabilite_check.entities.User;
 
-public interface UtilisateurRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
     @Query("SELECT u from User u where u.email =:email")
     User getUserByEmail(@Param("email") String email);
 }

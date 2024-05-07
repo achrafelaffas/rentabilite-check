@@ -5,10 +5,10 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="augmentationBFR")
+@Table(name = "augmentationBFR")
 public class AugmentationBFR {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idaUGbFR;
     private String nom;
     private double montant;
@@ -56,5 +56,13 @@ public class AugmentationBFR {
 
     public void setAnnee(Date annee) {
         this.annee = annee;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
     }
 }
