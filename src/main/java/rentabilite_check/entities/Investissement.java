@@ -11,7 +11,8 @@ public class Investissement {
     private int id;
     private float montantINV;
     private int dureeINV;
-    private float vr;
+    private float tauxActualisation;
+    private String intitule;
 
     @ManyToOne
     private Projet projet;
@@ -19,7 +20,6 @@ public class Investissement {
     public Investissement(float montantINV, int dureeINV, float vr) {
         this.montantINV = montantINV;
         this.dureeINV = dureeINV;
-        this.vr = vr;
     }
 
     public Investissement() {
@@ -49,11 +49,27 @@ public class Investissement {
         this.dureeINV = dureeINV;
     }
 
-    public float getVr() {
-        return vr;
+    public float getTauxActualisation() {
+        return tauxActualisation;
     }
 
-    public void setVr(float vr) {
-        this.vr = vr;
+    public void setTauxActualisation(float tauxActualisation) {
+        this.tauxActualisation = tauxActualisation;
+    }
+
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
     }
 }

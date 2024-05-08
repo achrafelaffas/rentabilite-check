@@ -6,6 +6,9 @@ function InsererProjet() {
         formData.forEach((value, key) => {
             jsonData[key] = value;
         });
+
+        console.log(jsonData)
+
         axios.post('ajouter-projet', jsonData).then(
             res => {
                 document.getElementById("AjouetProjetForm").reset();
@@ -16,13 +19,11 @@ function InsererProjet() {
         });
     });
 }
-
 function updateProjet(idProjet) {
     axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(
         res => {
             const projet = res.data;
             document.getElementById("nomUpdate").value = projet.nom;
-            document.getElementById("tauxActualisationUpdate").value = projet.tauxActualisation;
             document.getElementById("dureeUpdate").value = projet.duree;
             document.getElementById("descriptionUpdate").value = projet.description;
             document.getElementById("impotSocieteUpdate").value = projet.impotSociete;
@@ -30,7 +31,6 @@ function updateProjet(idProjet) {
             $('#updateProjetModal').modal('show');
         }).catch(err => console.log(err))
 }
-
 function sendProjetUpdate() {
     document.getElementById("updateProjetForm").addEventListener('submit', function (event) {
         event.preventDefault();

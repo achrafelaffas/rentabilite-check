@@ -75,7 +75,6 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nom</th>
-                                                <th>Taux d'actualisation</th>
                                                 <th>IS</th>
                                                 <th>Durée</th>
                                                 <th>VAN</th>
@@ -88,7 +87,6 @@
                                             <tr th:each="projet : ${projets}">
                                                 <td th:text="${projet.idProjet}"></td>
                                                 <td th:text="${projet.nom}"></td>
-                                                <td th:text="${projet.tauxActualisation}"></td>
                                                 <td th:text="${projet.impotSociete}"></td>
                                                 <td th:text="${projet.duree}"></td>
                                                 <td th:text="${projet.van}"></td>
@@ -169,14 +167,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="tauxActualisation">Le taux d'actualisation</label>
-                        <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="tauxActualisation" name="tauxActualisation"
-                                   placeholder="Entrer le taux d'actualisation">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="form-label" for="description">La description</label>
                         <div class="form-control-wrap">
                             <textarea class="form-control" id="description" name="description"
@@ -233,15 +223,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="tauxActualisationUpdate">Le taux d'actualisation</label>
-                        <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="tauxActualisationUpdate"
-                                   name="tauxActualisation"
-                                   placeholder="Entrer le taux d'actualisation">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label class="form-label" for="descriptionUpdate">La description</label>
                         <div class="form-control-wrap">
                             <textarea class="form-control" id="descriptionUpdate" name="description"
@@ -250,8 +231,8 @@
                     </div>
 
                     <div class="form-group">
-                        <button onclick="sendProjetUpdate()" class="btn btn-lg btn-primary">Enregistrer les
-                            Modifications
+                        <button onclick="sendProjetUpdate()" class="btn btn-lg btn-primary">
+                            Enregistrer les Modifications
                         </button>
                     </div>
                 </form>

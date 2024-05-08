@@ -11,10 +11,8 @@ public class Projet {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int idProjet;
-
     private String nom;
     private String description;
-    private float tauxActualisation;
     private float impotSociete;
     private int duree;
     private float van;
@@ -29,9 +27,6 @@ public class Projet {
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<ChargesFixes> chargesfixes;
-
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
-    private List<RecuperationBFR> recBFRs;
 
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<AugmentationBFR> augBFRs;
@@ -71,14 +66,6 @@ public class Projet {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public float getTauxActualisation() {
-        return tauxActualisation;
-    }
-
-    public void setTauxActualisation(float tauxActualisation) {
-        this.tauxActualisation = tauxActualisation;
     }
 
     public float getImpotSociete() {
@@ -143,14 +130,6 @@ public class Projet {
 
     public void setAugBFRs(List<AugmentationBFR> augBFRs) {
         this.augBFRs = augBFRs;
-    }
-
-    public List<RecuperationBFR> getRecBFRs() {
-        return recBFRs;
-    }
-
-    public void setRecBFRs(List<RecuperationBFR> recBFRs) {
-        this.recBFRs = recBFRs;
     }
 
     public List<ChargesFixes> getChargesfixes() {

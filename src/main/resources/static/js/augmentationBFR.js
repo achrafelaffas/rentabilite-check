@@ -40,3 +40,30 @@ function getProjets() {
         }
     )
 }
+
+function updateAugBFR(idaUGbFR) {
+    axios.get(`get-augbfr-a-modifier?idaUGbFR=${idaUGbFR}`).then(
+        res => {
+            const augmentationbfr = res.data;
+            console.log(augmentationbfr)
+            document.getElementById("nomUpdate").value = augmentationbfr.nom;
+            document.getElementById("montantUpdate").value = augmentationbfr.montant;
+            document.getElementById("anneeUpdate").value = augmentationbfr.annee;
+
+            axios.get("get-projets").then(
+                res => {
+                    const projets = res.data;
+                    const selectElement = document.getElementById("projetsUpdate");
+                    selectElement.innerHTML = '';
+                    projets.forEach(projet => {
+                        const option = document.createElement("option");
+                        option.value = projet.idProjet
+                        option.text = projet.nom
+                        selectElement.append(option)
+                    });
+                }
+            )
+
+            $('#updateAugBFRModal').modal('show');
+        }).catch(err => console.log(err))
+}

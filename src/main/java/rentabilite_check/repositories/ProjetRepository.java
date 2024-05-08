@@ -13,12 +13,11 @@ public interface ProjetRepository extends JpaRepository<Projet, Integer> {
 
     @Modifying
     @Transactional
-    @Query("update Projet p set p.nom=:nom, p.description=:description, p.tauxActualisation=:tauxActualisation, p.impotSociete=:impotSociete, p.duree=:duree where p.idProjet=:idProjet")
+    @Query("update Projet p set p.nom=:nom, p.description=:description, p.impotSociete=:impotSociete, p.duree=:duree where p.idProjet=:idProjet")
     void updateProjet(
             @Param("idProjet") int idProjet,
             @Param("nom") String nom,
             @Param("description") String description,
-            @Param("tauxActualisation") float tauxActualisation,
             @Param("impotSociete") float impotSociete,
             @Param("duree") int duree
     );

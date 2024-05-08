@@ -69,7 +69,6 @@ public class ProjetController {
                 p.getIdProjet(),
                 p.getNom(),
                 p.getDescription(),
-                p.getTauxActualisation(),
                 p.getImpotSociete(),
                 p.getDuree()
         );

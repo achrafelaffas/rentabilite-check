@@ -78,6 +78,7 @@
                                                 <th>Nom</th>
                                                 <th>Montant</th>
                                                 <th>Année</th>
+                                                <th></th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -86,6 +87,15 @@
                                                 <td th:text="${aug.nom}"></td>
                                                 <td th:text="${aug.montant}"></td>
                                                 <td th:text="${aug.annee}"></td>
+                                                <td class="d-flex justify-around h5">
+                                                    <a href="#"
+                                                       th:attr="onclick='updateAugBFR(\'' + ${aug.idaUGbFR} + '\')'">
+                                                        <em class="icon ni ni-pen-alt-fill"></em>
+                                                    </a>
+                                                    <a th:href="@{'/supprimer-aug?idaUGbFR=' + ${aug.idaUGbFR}}">
+                                                        <em class="icon ni ni-trash-fill"></em>
+                                                    </a>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -139,7 +149,7 @@
                         <label class="form-label" for="montant">Montant</label>
                         <div class="form-control-wrap">
                             <input type="number" class="form-control" id="montant" name="montant"
-                                   placeholder="Entrer la durée">
+                                   placeholder="Entrer le montant">
                         </div>
                     </div>
 
@@ -171,7 +181,7 @@
 </div>
 
 
-<div class="modal fade" id="updateProjetModal">
+<div class="modal fade" id="updateAugBFRModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -181,47 +191,37 @@
                 </a>
             </div>
             <div class="modal-body">
-                <form class="form-validate is-alter" id="updateProjetForm">
+                <form class="form-validate is-alter" id="updateAugBFRForm">
 
                     <div class="form-group">
-                        <label class="form-label" for="nomUpdate">Le nom du projet</label>
+                        <label class="form-label" for="nomUpdate">Le nom d'augmentation</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nomUpdate" name="nom"
-                                   placeholder="Entrer le nom">
-                            <input type="number" id="idProjetUpdate" hidden name="idProjet">
+                            <input type="text" class="form-control" id="nomUpdate" name="nom" placeholder="Entrer le nom">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="dureeUpdate">Durée</label>
+                        <label class="form-label" for="montantUpdate">Montant</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="dureeUpdate" name="duree"
-                                   placeholder="Entrer la durée">
+                            <input type="number" class="form-control" id="montantUpdate" name="montant"
+                                   placeholder="Entrer le montant">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="impotSocieteUpdate">Impot sur société</label>
+                        <label class="form-label" for="anneeUpdate">Année</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="impotSocieteUpdate" name="impotSociete"
-                                   placeholder="Entrer l'IS">
+                            <input type="date" class="form-control" id="anneeUpdate"
+                                   name="annee" placeholder="Choisir l'année">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="tauxActualisationUpdate">Le taux d'actualisation</label>
+                        <label class="form-label" for="projetsUpdate">Le taux d'actualisation</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="tauxActualisationUpdate"
-                                   name="tauxActualisation"
-                                   placeholder="Entrer le taux d'actualisation">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="descriptionUpdate">La description</label>
-                        <div class="form-control-wrap">
-                            <textarea class="form-control" id="descriptionUpdate" name="description"
-                                      placeholder="Entrer la description"></textarea>
+                            <select class="form-select js-select2" name="projet" data-search="on" id="projetsUpdate">
+                                <option value="option_select_name">Option select name</option>
+                            </select>
                         </div>
                     </div>
 
