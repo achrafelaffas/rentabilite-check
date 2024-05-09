@@ -20,12 +20,15 @@ public class Projet {
     private float ip;
     private float drci;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<ChiffreAffaire> chiffres;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<ChargesVariables> chargesvariables;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<ChargesFixes> chargesfixes;
 
