@@ -1,3 +1,4 @@
+
 function InsererProjet() {
     document.getElementById("AjouetProjetForm").addEventListener('submit', function (event) {
         event.preventDefault();
@@ -11,6 +12,7 @@ function InsererProjet() {
             res => {
                 document.getElementById("AjouetProjetForm").reset();
                 document.querySelector('.modal .close').click();
+
             }
         ).catch(error => {
             console.error(error);

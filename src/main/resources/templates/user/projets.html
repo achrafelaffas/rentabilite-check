@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -14,7 +15,7 @@
     <div class="nk-main ">
         <!-- sidebar @s -->
         <!-- inclusion du sidebar -->
-        <div th:replace="fragments/sidebar::sidebar"></div>
+        <div th:replace="~{fragments/sidebar::sidebar}"></div>
         <!-- sidebar @e -->
         <!-- wrap @s -->
         <div class="nk-wrap ">
@@ -84,7 +85,8 @@
                                                 <th>VAN</th>
                                                 <th>IP</th>
                                                 <th>DRCI</th>
-                                                <th></th>
+                                                <th>Modifier</th>
+                                                <th>Supprimer</th>
                                             </tr>
                                             </thead>
                                             <tbody id="tbodyProjet">
@@ -96,11 +98,13 @@
                                                 <td th:text="${projet.van}"></td>
                                                 <td th:text="${projet.ip}"></td>
                                                 <td th:text="${projet.drci}"></td>
-                                                <td class="d-flex justify-around h5">
+                                                <td class="h4">
                                                     <a href="#"
                                                        th:attr="onclick='updateProjet(\'' + ${projet.idProjet} + '\')'">
                                                         <em class="icon ni ni-pen-alt-fill"></em>
                                                     </a>
+                                                    </td>
+                                                <td class="h4">
                                                     <a th:href="@{'/supprimer-projet?idProjet=' + ${projet.idProjet}}">
                                                         <em class="icon ni ni-trash-fill"></em>
                                                     </a>
@@ -117,7 +121,7 @@
             </div>
             <!-- content @e -->
             <!-- footer @s -->
-            <div th:replace="fragments/footer::footer"></div>
+            <div th:replace="~{fragments/footer::footer}"></div>
             <!-- footer @e -->
         </div>
         <!-- wrap @e -->

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!-- Titre de la page  -->
+    <title>Projets - Rentabilité Check</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" th:href="@{/css/dashlite.css}">
+</head>
+
+<body class="nk-body ui-rounder has-sidebar ">
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- sidebar @s -->
+        <!-- inclusion du sidebar -->
+        <div th:replace="fragments/sidebar::sidebar"></div>
+        <!-- sidebar @e -->
+        <!-- wrap @s -->
+        <div class="nk-wrap ">
+            <!-- main header @s -->
+            <div class="nk-header is-light nk-header-fixed is-light">
+                <div class="container-xl wide-xl">
+                    <div class="nk-header-wrap">
+                        <div class="nk-menu-trigger d-xl-none ms-n1 me-3">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                    class="icon ni ni-menu"></em></a>
+                        </div>
+                        <!-- inclusion du tools pour afficher les information de l'utilisateur -->
+                        <div th:replace="fragments/header-tools::header-tools"></div>
+                    </div><!-- .nk-header-wrap -->
+                </div><!-- .container-fliud -->
+            </div>
+            <!-- main header @e -->
+            <!-- content @s -->
+            <div class="nk-content nk-content-fluid">
+                <div class="container-xl wide-xl">
+
+                    <div class="nk-content-body">
+
+
+
+
+                        <div class="nk-block">
+                            <div class="row g-gs">
+
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-99 bg-primary">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <a href="/dashboard">
+                                                <div class="card-inner pt-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="flex-item">
+                                                            <div class="text-white d-flex flex-wrap">
+                                                                <span class="fs-2 me-1">Dashboard</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- .card-inner --></a>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-99 bg-info">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <a href="/projets">
+                                                <div class="card-inner pt-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="flex-item">
+                                                            <div class="text-white d-flex flex-wrap">
+                                                                <span class="fs-2 me-1">Projets</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- .card-inner --></a>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-99 bg-warning">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <a href="/cf">
+                                                <div class="card-inner pt-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="flex-item">
+                                                            <div class="text-white d-flex flex-wrap">
+                                                                <span class="fs-2 me-1">Charges Fixes</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- .card-inner --></a>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+
+
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="card h-99 bg-danger">
+                                        <div class="nk-cmwg nk-cmwg1">
+                                            <a href="/ca">
+                                                <div class="card-inner pt-3">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div class="flex-item">
+                                                            <div class="text-white d-flex flex-wrap">
+                                                                <span class="fs-2 me-1">Chiffre d'Affaire</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- .card-inner --></a>
+                                        </div><!-- .nk-cmwg -->
+                                    </div><!-- .card -->
+                                </div><!-- .col -->
+
+
+
+                            </div><!-- .row -->
+                        </div><!-- .nk-block -->
+
+
+
+
+
+
+
+
+
+
+                        <div class="nk-block-head nk-block-head-sm">
+                            <div class="nk-block-between">
+                                <div class="nk-block-head-content">
+                                    <h3 class="nk-block-title page-title">Charges Variables</h3>
+                                    <div class="nk-block-des text-soft">
+                                        <p>La charges Variables de vos projets</p>
+                                    </div>
+                                </div><!-- .nk-block-head-content -->
+                                <div class="nk-block-head-content">
+                                    <div class="toggle-wrap nk-block-tools-toggle">
+                                        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1"
+                                           data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
+                                        <div class="toggle-expand-content" data-content="pageMenu">
+                                            <ul class="nk-block-tools g-3">
+                                                <li>
+                                                    <button data-bs-toggle="modal" data-bs-target="#ajouterProjetModal"
+                                                            class="dropdown-toggle btn btn-primary btn-dim">
+                                                        <em class="icon ni ni-plus"></em>
+                                                        <span>
+                                                            <span class="d-md-none">Add</span>
+                                                            <span class="d-none d-md-block">Ajouter une Charge Variable</span>
+                                                        </span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- .nk-block-head-content -->
+                            </div><!-- .nk-block-between -->
+                        </div><!-- .nk-block-head -->
+
+                        <div class="nk-block">
+                            <div class="row g-gs">
+                                <div class="card card-preview">
+                                    <div class="card-inner">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="form-label" for="projets">Les charges Variables</label>
+                                                <div class="form-control-wrap ">
+                                                    <div class="form-control-select">
+                                                        <select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
+                                                            <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Intitulé</th>
+                                                <th>Montant</th>
+                                                <th>Annee</th>
+                                                <th>Modifier</th>
+                                                <th>Supprimer</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="cv : ${chargesvariables}">
+                                                <th th:text="${cv.idCV}">Id</th>
+                                                <td th:text="${cv.nom}">Intitulé</td>
+                                                <td th:text="${cv.montant}">Montant</td>
+                                                <td th:text="${cv.annee}">Annee</td>
+                                                <td ><a href="#" th:attr="onclick='updateCV(\'' + ${cv.idCV} + '\')'">
+                                                    <em class="icon ni ni-pen-alt-fill"></em>
+                                                </a></td>
+
+
+                                                <td><a th:href="@{'/deleteCF?idCV=' + ${cv.idCV}}">
+                                                    <em class="icon ni ni-trash-fill"></em>
+                                                </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                            <tfoot></tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div><!-- .row -->
+                        </div><!-- .nk-block -->
+                    </div>
+                </div>
+            </div>
+            <!-- content @e -->
+            <!-- footer @s -->
+            <div th:replace="fragments/footer::footer"></div>
+            <!-- footer @e -->
+        </div>
+        <!-- wrap @e -->
+    </div>
+    <!-- main @e -->
+</div>
+<!-- app-root @e -->
+<!-- select region modal -->
+<!-- JavaScript -->
+<script type="text/javascript" th:src="@{/js/bundle.js}"></script>
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+<script type="text/javascript" th:src="@{/js/projets.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
+
+
+<div class="modal fade" id="ajouterProjetModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ajouter une Charge Variable </h5>
+                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form class="form-validate is-alter" id="AjouetChargeVariable">
+
+                    <div class="form-group">
+                        <label class="form-label" for="idprojet">Projet</label>
+                        <div class="form-control-select">
+                            <select class="form-control" id="idprojet" name="projets">
+                                <option value="default_option">1</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-label" for="nom">Intitulé</label>
+                        <div class="form-control-wrap">
+                            <input type="text" class="form-control" id="nom" name="nom" placeholder="nom de charge fixe">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="montant">Montant</label>
+                        <div class="form-control-wrap">
+                            <input type="number" class="form-control" id="montant" name="montant" placeholder="Entrer le montant">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="annee">Annee</label>
+                        <div class="form-control-wrap">
+                            <input type="date" class="form-control" id="annee" name="annee">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <button onclick="AjouterChargeVariable()" class="btn btn-lg btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

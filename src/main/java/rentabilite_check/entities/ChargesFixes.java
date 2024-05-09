@@ -56,4 +56,12 @@ public class ChargesFixes {
     public void setAnnee(Date annee) {
         this.annee = annee;
     }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
 }
