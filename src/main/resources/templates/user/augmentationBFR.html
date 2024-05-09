@@ -89,7 +89,7 @@
                                                 <td th:text="${aug.annee}"></td>
                                                 <td class="d-flex justify-around h5">
                                                     <a href="#"
-                                                       th:attr="onclick='updateAugBFR(\'' + ${aug.idaUGbFR} + '\')'">
+                                                       th:attr="onclick='updateAugBFR(' + ${aug.idaUGbFR} +','+ ${aug.projet.idProjet} + ')'">
                                                         <em class="icon ni ni-pen-alt-fill"></em>
                                                     </a>
                                                     <a th:href="@{'/supprimer-aug?idaUGbFR=' + ${aug.idaUGbFR}}">
@@ -180,7 +180,6 @@
     </div>
 </div>
 
-
 <div class="modal fade" id="updateAugBFRModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -196,7 +195,9 @@
                     <div class="form-group">
                         <label class="form-label" for="nomUpdate">Le nom d'augmentation</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nomUpdate" name="nom" placeholder="Entrer le nom">
+                            <input type="text" class="form-control" id="nomUpdate" name="nom"
+                                   placeholder="Entrer le nom">
+                            <input type="number" id="idaUGbFRUpdate" hidden name="idaUGbFR">
                         </div>
                     </div>
 
@@ -226,7 +227,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button onclick="" class="btn btn-lg btn-primary">Enregistrer les
+                        <button onclick="sendBfrUpdate()" class="btn btn-lg btn-primary">Enregistrer les
                             Modifications
                         </button>
                     </div>

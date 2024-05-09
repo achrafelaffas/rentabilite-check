@@ -44,7 +44,7 @@ public class WebSecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/dashboard").authenticated().anyRequest().permitAll()
+                        auth.requestMatchers("/dashboard","/projets").authenticated().anyRequest().permitAll()
                 )
                 .formLogin(login -> login.usernameParameter("email")
                         .loginPage("/login")

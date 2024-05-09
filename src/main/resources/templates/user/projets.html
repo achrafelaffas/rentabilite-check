@@ -51,11 +51,15 @@
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
                                                 <li>
+                                                    <a th:href="@{projets}"
+                                                       class="btn btn-dim btn-primary">Actualiser</a>
+                                                </li>
+                                                <li>
                                                     <button data-bs-toggle="modal" data-bs-target="#ajouterProjetModal"
                                                             class="dropdown-toggle btn btn-primary btn-dim">
                                                         <em class="icon ni ni-plus"></em>
                                                         <span>
-                                                            <span class="d-md-none">Add</span>
+                                                            <span class="d-md-none">Ajouter</span>
                                                             <span class="d-none d-md-block">Ajouter Projet</span>
                                                         </span>
                                                     </button>
@@ -83,7 +87,7 @@
                                                 <th></th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="tbodyProjet">
                                             <tr th:each="projet : ${projets}">
                                                 <td th:text="${projet.idProjet}"></td>
                                                 <td th:text="${projet.nom}"></td>
@@ -126,7 +130,7 @@
 <script type="text/javascript" th:src="@{/js/bundle.js}"></script>
 <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 <script type="text/javascript" th:src="@{/js/projets.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
 </body>
 </html>
 
@@ -189,7 +193,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ajouter un projet</h5>
+                <h5 class="modal-title">Modifier un projet</h5>
                 <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>

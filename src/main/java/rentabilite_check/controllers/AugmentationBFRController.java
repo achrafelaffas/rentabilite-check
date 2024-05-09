@@ -37,4 +37,17 @@ public class AugmentationBFRController {
     public @ResponseBody AugmentationBFR getAugmentationBFRModifier(@RequestParam int idaUGbFR) {
         return augmentationBFRRepository.findAugmentationBFRByIdaUGbFR(idaUGbFR);
     }
+
+    @PostMapping("update-bfr")
+    public String updateBfr(@RequestBody AugmentationBFR augmentationBFR) {
+        System.out.println(augmentationBFR.getNom());
+        augmentationBFRRepository.updateAugBFR(
+                augmentationBFR.getIdaUGbFR(),
+                augmentationBFR.getNom(),
+                augmentationBFR.getAnnee(),
+                augmentationBFR.getMontant(),
+                augmentationBFR.getProjet()
+        );
+        return "user/augmentationBFR";
+    }
 }

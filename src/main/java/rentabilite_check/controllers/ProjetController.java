@@ -13,6 +13,7 @@ import rentabilite_check.entities.User;
 import rentabilite_check.repositories.ProjetRepository;
 import rentabilite_check.repositories.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,18 +32,25 @@ public class ProjetController {
 
     @GetMapping("/get-projets")
     public @ResponseBody List<Projet> getProjets() {
-        return projetRepository.findAll();
+        List<Projet> projets = new ArrayList<>();
+        projets = projetRepository.findAll();
+        System.out.println("-------------------------");
+        for (Projet projet : projets) {
+            System.out.println(projet.getNom());
+        }
+        System.out.println("-------------------------");
+        return projets;
     }
 
     @PostMapping("/ajouter-projet")
-    public String ajouterProjet(@RequestBody Projet projet) {
+    public @ResponseBody String ajouterProjet(@RequestBody Projet projet) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.getUserByEmail(auth.getName());
         if (user != null) {
             projet.setUser(user);
             projetRepository.save(projet);
         }
-        return "user/projets";
+        return "inserted";
     }
 
     @GetMapping("/supprimer-projet")

@@ -1,5 +1,6 @@
 package rentabilite_check.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -28,6 +29,7 @@ public class Projet {
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<ChargesFixes> chargesfixes;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<AugmentationBFR> augBFRs;
 

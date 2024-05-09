@@ -7,8 +7,6 @@ function InsererProjet() {
             jsonData[key] = value;
         });
 
-        console.log(jsonData)
-
         axios.post('ajouter-projet', jsonData).then(
             res => {
                 document.getElementById("AjouetProjetForm").reset();
@@ -19,6 +17,7 @@ function InsererProjet() {
         });
     });
 }
+
 function updateProjet(idProjet) {
     axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(
         res => {
@@ -31,6 +30,7 @@ function updateProjet(idProjet) {
             $('#updateProjetModal').modal('show');
         }).catch(err => console.log(err))
 }
+
 function sendProjetUpdate() {
     document.getElementById("updateProjetForm").addEventListener('submit', function (event) {
         event.preventDefault();
