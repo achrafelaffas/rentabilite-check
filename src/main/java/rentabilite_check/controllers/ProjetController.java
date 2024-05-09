@@ -34,11 +34,6 @@ public class ProjetController {
     public @ResponseBody List<Projet> getProjets() {
         List<Projet> projets = new ArrayList<>();
         projets = projetRepository.findAll();
-        System.out.println("-------------------------");
-        for (Projet projet : projets) {
-            System.out.println(projet.getNom());
-        }
-        System.out.println("-------------------------");
         return projets;
     }
 
