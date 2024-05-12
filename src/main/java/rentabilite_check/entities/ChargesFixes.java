@@ -2,7 +2,7 @@ package rentabilite_check.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="chargesFixes")
@@ -63,5 +63,15 @@ public class ChargesFixes {
 
     public void setProjet(Projet projet) {
         this.projet = projet;
+    }
+
+    @Override
+    public String toString() {
+        return "ChargesFixes{" +
+                "idCF=" + idCF +
+                ", nom='" + nom + '\'' +
+                ", montant=" + montant +
+                ", annee=" + annee +
+                '}';
     }
 }

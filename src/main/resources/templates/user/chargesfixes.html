@@ -137,6 +137,25 @@
                                     <div class="nk-block-des text-soft">
                                         <p>La charges fixes de vos projets</p>
                                     </div>
+                                    <div class="row">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="projets">Projets</label>
+                                                    <div class="form-control-wrap ">
+                                                        <div class="form-control-select" >
+                                                            <select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
+                                                                <option value="0"></option>
+                                                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+
+
+
+
+
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
                                     <div class="toggle-wrap nk-block-tools-toggle">
@@ -157,6 +176,7 @@
                                             </ul>
                                         </div>
                                     </div>
+
                                 </div><!-- .nk-block-head-content -->
                             </div><!-- .nk-block-between -->
                         </div><!-- .nk-block-head -->
@@ -165,20 +185,7 @@
                             <div class="row g-gs">
                                 <div class="card card-preview">
                                     <div class="card-inner">
-                                        <div class="col-sm-4">
-                                            <div class="form-group">
-                                                <label class="form-label" for="projets">Projets</label>
-                                                <div class="form-control-wrap ">
-                                                    <div class="form-control-select">
-                                                        <select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
-                                                            <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <table class="table">
+                                        <table class="datatable-init table">
                                             <thead>
                                             <tr>
                                                 <th>Id</th>
@@ -189,19 +196,20 @@
                                                 <th>Supprimer</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody id="tbodyChargeFixe">
                                             <tr th:each="cf : ${chargesfixes}">
-                                            <th th:text="${cf.idCF}">Id</th>
-                                            <td th:text="${cf.nom}">Intitulé</td>
-                                            <td th:text="${cf.montant}">Montant</td>
-                                            <td th:text="${cf.annee}">Annee</td>
-                                            <td class="h4"><a href="#" th:attr="onclick='updateCF(\'' + ${cf.idCF} + '\')'">
+                                            <th th:text="${cf.idCF}"></th>
+                                            <td th:text="${cf.nom}"></td>
+                                            <td th:text="${cf.montant}"></td>
+                                            <td th:text="${cf.annee}"></td>
+                                            <td class="h4"><a href="#" th:attr="onclick='updateCF(' + ${cf.idCF} + ',' + ${cf.projet.idProjet} +')'">
                                                 <em class="icon ni ni-pen-alt-fill"></em>
 
                                             </a></td>
 
 
-                                            <td class="h4"><a th:href="@{'/deleteCF?idCF=' + ${cf.idCF}}">
+                                            <td class="h4">
+                                                <a href="#" th:attr="onclick='supprimerChargeFixe(' + ${cf.idCF} +')'">
                                                 <em class="icon ni ni-trash-fill"></em>
                                             </a>
                                             </td>
@@ -308,11 +316,11 @@
                     <div class="form-group">
                         <label class="form-label" for="Updateidprojet">Projet</label>
                         <div class="form-control-select">
-                            <select class="form-control" id="Updateidprojet" name="Updateidprojet">
+                            <select class="form-control" id="Updateidprojet" name="projet">
                                 <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
                             </select>
 
-                            <input type="number" id="idcf" hidden name="idcf">
+                            <input type="hidden" id="idcf" name="idCF">
 
                         </div>
 
@@ -322,21 +330,21 @@
                     <div class="form-group">
                         <label class="form-label" for="nom">Intitulé</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="updatenom" name="updatenom">
+                            <input type="text" class="form-control" id="updatenom" name="nom">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="montant">Montant</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="updatemontant" name="updatemontant">
+                            <input type="number" class="form-control" id="updatemontant" name="montant">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="annee">Annee</label>
                         <div class="form-control-wrap">
-                            <input type="date" class="form-control" id="updateannee" name="updateannee">
+                            <input type="date" class="form-control" id="updateannee" name="annee">
                         </div>
                     </div>
 

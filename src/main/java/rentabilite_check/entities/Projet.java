@@ -39,6 +39,7 @@ public class Projet {
     @ManyToOne
     private User user;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
     private List<Investissement> invesstissements;
     public Projet(String nom, int duree) {

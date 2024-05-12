@@ -2,7 +2,7 @@ package rentabilite_check.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="ChiffreAffaire")
@@ -14,9 +14,18 @@ public class ChiffreAffaire {
     private Date annee;
     private double prixUnitaire;
     private int quantite;
-
     @ManyToOne
     private Projet projet;
+
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
+    }
+
 
     public ChiffreAffaire(Date annee, double prixUnitaire, int quantite) {
         this.annee = annee;
@@ -43,7 +52,7 @@ public class ChiffreAffaire {
         this.valeur = valeur;
     }
 
-    public Date getAnnee() {
+    public java.sql.Date getAnnee() {
         return annee;
     }
 

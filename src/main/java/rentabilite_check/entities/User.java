@@ -1,5 +1,6 @@
 package rentabilite_check.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class User {
     @Column(nullable = false)
     private String motdepasse;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade=CascadeType.ALL,mappedBy="user")
     private List<Projet> projets;
 

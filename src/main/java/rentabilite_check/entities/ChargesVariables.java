@@ -2,7 +2,7 @@ package rentabilite_check.entities;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="ChargesVariables")
@@ -50,11 +50,19 @@ public class ChargesVariables {
         this.montant = montant;
     }
 
-    public Date getAnnee() {
+    public java.sql.Date getAnnee() {
         return annee;
     }
 
     public void setAnnee(Date annee) {
         this.annee = annee;
+    }
+
+    public Projet getProjet() {
+        return projet;
+    }
+
+    public void setProjet(Projet projet) {
+        this.projet = projet;
     }
 }
