@@ -4,10 +4,10 @@ package rentabilite_check.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="investissement")
+@Table(name = "investissement")
 public class Investissement {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private float montantINV;
     private int dureeINV;

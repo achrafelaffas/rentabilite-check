@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- Titre de la page  -->
-    <title>Projets - Rentabilité Check</title>
+    <title>Investissement - Rentabilité Check</title>
     <!-- StyleSheets  -->
     <link rel="stylesheet" th:href="@{/css/dashlite.css}">
 </head>
@@ -40,9 +40,9 @@
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
-                                    <h3 class="nk-block-title page-title">Mes Projets</h3>
+                                    <h3 class="nk-block-title page-title">Mes Investissements</h3>
                                     <div class="nk-block-des text-soft">
-                                        <p>La liste de vos projets sur la platforme</p>
+                                        <p>La liste de vos investissements</p>
                                     </div>
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
@@ -52,12 +52,26 @@
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
                                                 <li>
-                                                    <button data-bs-toggle="modal" data-bs-target="#ajouterProjetModal"
+                                                    <form action="">
+                                                        <select class="form-select js-select2" name="projet"
+                                                                data-search="on" id="filterInvByProjet"
+                                                                onchange="filterInvestByProjet()">
+                                                            <option value="0">Afficher Tout</option>
+                                                            <option th:each="projet : ${projets}"
+                                                                    th:value="${projet.idProjet}"
+                                                                    th:text="${projet.nom}"></option>
+                                                        </select>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <button data-bs-toggle="modal"
+                                                            onclick="projetsSelect('projet')"
+                                                            data-bs-target="#AjoutInvestissementModal"
                                                             class="dropdown-toggle btn btn-primary btn-dim">
                                                         <em class="icon ni ni-plus"></em>
                                                         <span>
                                                             <span class="d-md-none">Ajouter</span>
-                                                            <span class="d-none d-md-block">Ajouter Projet</span>
+                                                            <span class="d-none d-md-block">Ajouter Investissement</span>
                                                         </span>
                                                     </button>
                                                 </li>
@@ -75,29 +89,20 @@
                                             <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Nom</th>
-                                                <th>IS</th>
+                                                <th>Montant</th>
                                                 <th>Durée</th>
-                                                <th>VAN</th>
-                                                <th>IP</th>
-                                                <th>DRCI</th>
-                                                <th>Rentabilité</th>
+                                                <th>Taux d'actualisation</th>
+                                                <th>Intitulé</th>
                                                 <th>Actions</th>
                                             </tr>
                                             </thead>
-                                            <tbody id="tbodyProjet">
-                                            <tr th:each="projet : ${projets}">
-                                                <td th:text="${projet.idProjet}"></td>
-                                                <td th:text="${projet.nom}"></td>
-                                                <td th:text="${projet.impotSociete}"></td>
-                                                <td th:text="${projet.duree}"></td>
-                                                <td th:text="${projet.van}"></td>
-                                                <td th:text="${projet.ip}"></td>
-                                                <td th:text="${projet.drci}"></td>
-                                                <td>
-                                                    <span class="badge badge-dim bg-success"><span>Rentable</span></span>
-                                                    <!-- <span class="badge badge-dim bg-danger"><span>Non Rentable</span></span> -->
-                                                </td>
+                                            <tbody id="tbody">
+                                            <tr th:each="investissement : ${investissements}">
+                                                <td th:text="${investissement.id}"></td>
+                                                <td th:text="${investissement.montantINV}"></td>
+                                                <td th:text="${investissement.dureeINV}"></td>
+                                                <td th:text="${investissement.tauxActualisation}"></td>
+                                                <td th:text="${investissement.intitule}"></td>
                                                 <td>
                                                     <ul class="nk-tb-actions gx-1">
                                                         <li>
@@ -110,13 +115,13 @@
                                                                     <ul class="link-list-opt no-bdr">
                                                                         <li>
                                                                             <a href="#"
-                                                                               th:attr="onclick='updateProjet(\'' + ${projet.idProjet} + '\')'">
+                                                                               th:attr="onclick='updateInvestissement(' + ${investissement.id} + ',' + ${investissement.projet.idProjet}+ ')'">
                                                                                 <em class="icon ni ni-pen-alt-fill"></em>
                                                                                 <span>Modifier</span>
                                                                             </a>
                                                                         </li>
                                                                         <li>
-                                                                            <a th:href="@{'/supprimer-projet?idProjet=' + ${projet.idProjet}}">
+                                                                            <a th:href="@{'/supprimer-investissement?id=' + ${investissement.id}}">
                                                                                 <em class="icon ni ni-trash-fill"></em>
                                                                                 <span>Supprimer</span>
                                                                             </a>
@@ -151,57 +156,68 @@
 <!-- JavaScript -->
 <script type="text/javascript" th:src="@{/js/bundle.js}"></script>
 <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
-<script type="text/javascript" th:src="@{/js/projets.js}"></script>
+<script type="text/javascript" th:src="@{/js/investissement.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+<script src="https://www.unpkg.com/zod/lib/index.umd.js"></script>
 </body>
 </html>
 
 
-<div class="modal fade" id="ajouterProjetModal">
+<div class="modal fade" id="AjoutInvestissementModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ajouter un projet</h5>
+                <h5 class="modal-title">Ajouter un investissement</h5>
                 <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>
             </div>
             <div class="modal-body">
-                <form class="form-validate is-alter" id="AjouetProjetForm">
+                <form class="form-validate is-alter" id="AjoutInvestissementForm">
 
                     <div class="form-group">
-                        <label class="form-label" for="nom">Le nom du projet</label>
+                        <label class="form-label" for="montantINV">Le montant de l'investissment</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrer le nom">
+                            <input type="number" class="form-control" id="montantINV" name="montantINV"
+                                   placeholder="Entrer le montant">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="duree">Durée</label>
+                        <label class="form-label" for="dureeINV">La durée</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="duree" name="duree"
+                            <input type="number" class="form-control" id="dureeINV" name="dureeINV"
                                    placeholder="Entrer la durée">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="impotSociete">Impot sur société</label>
+                        <label class="form-label" for="tauxActualisation">Le taux d'actualisation</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="impotSociete" name="impotSociete"
-                                   placeholder="Entrer l'IS">
+                            <input type="number" class="form-control" id="tauxActualisation" name="tauxActualisation"
+                                   placeholder="Entrer le taux d'actualisation">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="description">La description</label>
+                        <label class="form-label" for="intitule">Intitulé d'Investissement</label>
                         <div class="form-control-wrap">
-                            <textarea class="form-control" id="description" name="description"
-                                      placeholder="Entrer la description"></textarea>
+                            <input type="text" class="form-control" id="intitule" name="intitule"
+                                   placeholder="Entrer liintitulé de l'investissement">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button onclick="InsererProjet()" class="btn btn-lg btn-primary">Enregistrer les Informations
+                        <label class="form-label" for="projet">Le taux d'actualisation</label>
+                        <div class="form-control-wrap">
+                            <select class="form-select js-select2" name="projet" data-search="on" id="projet">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button role="button" onclick="insererInvestissement()" class="btn btn-lg btn-primary">
+                            Enregistrer les Informations
                         </button>
                     </div>
                 </form>
@@ -210,54 +226,62 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="updateProjetModal">
+<div class="modal fade" id="UpdateInvestissementModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modifier un projet</h5>
+                <h5 class="modal-title">Ajouter un investissement</h5>
                 <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>
             </div>
             <div class="modal-body">
-                <form class="form-validate is-alter" id="updateProjetForm">
+                <form class="form-validate is-alter" id="UpdateInvestissementForm">
 
                     <div class="form-group">
-                        <label class="form-label" for="nomUpdate">Le nom du projet</label>
+                        <label class="form-label" for="montantINVUpdate">Le montant de l'investissment</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nomUpdate" name="nom"
-                                   placeholder="Entrer le nom">
-                            <input type="number" id="idProjetUpdate" hidden name="idProjet">
+                            <input type="number" class="form-control" id="montantINVUpdate" name="montantINV"
+                                   placeholder="Entrer le montant">
+                            <input type="number" hidden name="id" id="id">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="dureeUpdate">Durée</label>
+                        <label class="form-label" for="dureeINVUpdate">La durée</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="dureeUpdate" name="duree"
+                            <input type="number" class="form-control" id="dureeINVUpdate" name="dureeINV"
                                    placeholder="Entrer la durée">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="impotSocieteUpdate">Impot sur société</label>
+                        <label class="form-label" for="tauxActualisationUpdate">Le taux d'actualisation</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="impotSocieteUpdate" name="impotSociete"
-                                   placeholder="Entrer l'IS">
+                            <input type="number" class="form-control" id="tauxActualisationUpdate"
+                                   name="tauxActualisation"
+                                   placeholder="Entrer le taux d'actualisation">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="descriptionUpdate">La description</label>
+                        <label class="form-label" for="intituleUpdate">Intitulé d'Investissement</label>
                         <div class="form-control-wrap">
-                            <textarea class="form-control" id="descriptionUpdate" name="description"
-                                      placeholder="Entrer la description"></textarea>
+                            <input type="text" class="form-control" id="intituleUpdate" name="intitule"
+                                   placeholder="Entrer liintitulé de l'investissement">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <button onclick="sendProjetUpdate()" class="btn btn-lg btn-primary">
+                        <label class="form-label" for="projetUpdate">Le taux d'actualisation</label>
+                        <div class="form-control-wrap">
+                            <select class="form-select js-select2" name="projet" data-search="on" id="projetUpdate">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button role="button" onclick="applyupdateInvestissement()" class="btn btn-lg btn-primary">
                             Enregistrer les Modifications
                         </button>
                     </div>

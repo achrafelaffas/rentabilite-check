@@ -32,8 +32,7 @@ public class ProjetController {
 
     @GetMapping("/get-projets")
     public @ResponseBody List<Projet> getProjets() {
-        List<Projet> projets = projetRepository.findAll();
-        return projets;
+        return projetRepository.findAll();
     }
 
     @PostMapping("/ajouter-projet")

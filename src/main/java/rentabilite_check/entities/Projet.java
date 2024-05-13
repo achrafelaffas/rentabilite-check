@@ -7,10 +7,10 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="projet")
+@Table(name = "projet")
 public class Projet {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProjet;
     private String nom;
     private String description;
@@ -21,27 +21,28 @@ public class Projet {
     private float drci;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
     private List<ChiffreAffaire> chiffres;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
     private List<ChargesVariables> chargesvariables;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
     private List<ChargesFixes> chargesfixes;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
     private List<AugmentationBFR> augBFRs;
 
     @ManyToOne
     private User user;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(cascade=CascadeType.ALL,mappedBy="projet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
     private List<Investissement> invesstissements;
+
     public Projet(String nom, int duree) {
         this.nom = nom;
         this.duree = duree;

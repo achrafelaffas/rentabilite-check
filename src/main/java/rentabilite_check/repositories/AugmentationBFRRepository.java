@@ -9,13 +9,16 @@ import rentabilite_check.entities.AugmentationBFR;
 import rentabilite_check.entities.Projet;
 
 import java.sql.Date;
+import java.util.List;
 
 
 public interface AugmentationBFRRepository extends JpaRepository<AugmentationBFR, Integer> {
     AugmentationBFR findAugmentationBFRByIdaUGbFR(int idaUGbFR);
 
-    @Modifying
+    List<AugmentationBFR> findAugmentationBFRByProjet(Projet projet);
+
     @Transactional
+    @Modifying
     @Query("update AugmentationBFR a set a.nom=:nom, a.annee=:annee, a.montant=:montant, a.projet=:projet where a.idaUGbFR=:idaUGbFR")
     void updateAugBFR(
             @Param("idaUGbFR") int idaUGbFR,
