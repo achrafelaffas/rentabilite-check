@@ -1,3 +1,41 @@
+function getTotalCashFlow(idProjet) {
+    axios.get(`/projet/${idProjet}/cashflows`)
+        .then(res => {
+            const totalCashFlow = res.data;
+            const tdTotalCashFlow = document.getElementById(`totalCashFlow_${idProjet}`);
+            axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(resprojet => {
+                let projet = resprojet.data;
+                let capital=projet.captial;
+                //console.log(totalCashFlow);
+                //console.log(capital);
+
+
+                let van=totalCashFlow-capital;
+                //console.log(van);
+                let ip=1+(van/capital);
+                //console.log(ip);
+
+                if(van > 0 && ip >1){
+                    tdTotalCashFlow.innerText = "Le projet est Rentable";
+                }
+                else{
+                    tdTotalCashFlow.innerText = "Le projet non Rentable";
+
+                }
+
+
+
+
+                })
+
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+
 function InsererProjet() {
     const formAjout = document.getElementById("AjouetProjetForm");
     formAjout.addEventListener('submit', insert);
@@ -21,11 +59,15 @@ function InsererProjet() {
     }
 }
 
+
+
+
 function updateProjet(idProjet) {
     axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(res => {
         const projet = res.data;
         document.getElementById("nomUpdate").value = projet.nom;
         document.getElementById("dureeUpdate").value = projet.duree;
+        document.getElementById("capitalUpdate").value = projet.captial;
         document.getElementById("descriptionUpdate").value = projet.description;
         document.getElementById("impotSocieteUpdate").value = projet.impotSociete;
         document.getElementById("idProjetUpdate").value = projet.idProjet;
@@ -70,6 +112,9 @@ async function updateTableView() {
 
         const tdnom = document.createElement('td');
         tdnom.innerText = p.nom;
+
+        const tdcapital = document.createElement('td');
+        tdimpotSociete.innerText = p.captial
 
         const tdimpotSociete = document.createElement('td');
         tdimpotSociete.innerText = p.impotSociete;
@@ -124,6 +169,7 @@ async function updateTableView() {
 
         tr.append(tdidProjet);
         tr.append(tdnom);
+        tr.append(tdcapital);
         tr.append(tdimpotSociete);
         tr.append(tdduree);
         tr.append(tdvan);

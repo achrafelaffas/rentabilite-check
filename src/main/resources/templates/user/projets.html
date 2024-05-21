@@ -76,11 +76,13 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Nom</th>
+                                                <th>Capital</th>
                                                 <th>IS</th>
                                                 <th>Durée</th>
                                                 <th>VAN</th>
                                                 <th>IP</th>
                                                 <th>DRCI</th>
+                                                <th>Etudier La rentabilite</th>
                                                 <th>Rentabilité</th>
                                                 <th>Actions</th>
                                             </tr>
@@ -89,17 +91,19 @@
                                             <tr th:each="projet : ${projets}">
                                                 <td th:text="${projet.idProjet}"></td>
                                                 <td th:text="${projet.nom}"></td>
+                                                <td th:text="${projet.captial}"></td>
                                                 <td th:text="${projet.impotSociete}"></td>
                                                 <td th:text="${projet.duree}"></td>
                                                 <td th:text="${projet.van}"></td>
                                                 <td th:text="${projet.ip}"></td>
                                                 <td th:text="${projet.drci}"></td>
                                                 <td>
-                                                    <span th:if="${projet.idProjet % 2 == 0}"
-                                                          class="badge badge-dot bg-success">Projet Rentable</span>
-                                                    <span th:if="${projet.idProjet % 2 != 0}"
-                                                          class="badge badge-dot bg-danger">Projet Non Rentable</span>
+                                                    <button class="btn btn-primary" th:attr="onclick='getTotalCashFlow(' + ${projet.idProjet} +')'">
+                                                        Etudier La rentabilite
+                                                    </button>
                                                 </td>
+                                                <td th:id="'totalCashFlow_' + ${projet.idProjet}"></td>
+
                                                 <td>
                                                     <ul class="nk-tb-actions gx-1">
                                                         <li>
@@ -185,6 +189,13 @@
                                    placeholder="Entrer la durée">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label" for="captial">Capital</label>
+                        <div class="form-control-wrap">
+                            <input type="number" class="form-control" id="captial" name="captial"
+                                   placeholder="Entrer le capital initiale">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label class="form-label" for="impotSociete">Impot sur société</label>
@@ -239,6 +250,13 @@
                         <div class="form-control-wrap">
                             <input type="number" class="form-control" id="dureeUpdate" name="duree"
                                    placeholder="Entrer la durée">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="capitalUpdate">Capital</label>
+                        <div class="form-control-wrap">
+                            <input type="number" class="form-control" id="capitalUpdate" name="captial">
                         </div>
                     </div>
 

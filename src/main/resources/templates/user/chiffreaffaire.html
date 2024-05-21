@@ -27,6 +27,7 @@
                                     class="icon ni ni-menu"></em></a>
                         </div>
                         <div th:replace="fragments/header-menu::header-menu"></div>
+
                         <!-- inclusion du tools pour afficher les information de l'utilisateur -->
                         <div th:replace="fragments/header-tools::header-tools"></div>
                     </div><!-- .nk-header-wrap -->
@@ -36,7 +37,15 @@
             <!-- content @s -->
             <div class="nk-content nk-content-fluid">
                 <div class="container-xl wide-xl">
+
                     <div class="nk-content-body">
+
+
+
+
+
+
+
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
@@ -44,6 +53,10 @@
                                     <div class="nk-block-des text-soft">
                                         <p>Les Chiffres d'Affaire de vos projets</p>
                                     </div>
+
+
+
+
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
                                     <div class="toggle-wrap nk-block-tools-toggle">
@@ -51,19 +64,12 @@
                                            data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
+                                                <li><select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
+                                                    <option value="0">Afficher Tout</option>
+                                                    <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                                </select></li>
                                                 <li>
-                                                    <div class="form-control-select">
-                                                        <select class="form-control" id="projets" name="projets"
-                                                                onchange="selectProjet(this)">
-                                                            <option value="0"></option>
-                                                            <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
-                                                                    th:text="${p.nom}"></option>
-                                                        </select>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <button data-bs-toggle="modal"
-                                                            data-bs-target="#ajouterChiffreAffaireModal"
+                                                    <button data-bs-toggle="modal" data-bs-target="#ajouterChiffreAffaireModal"
                                                             class="dropdown-toggle btn btn-primary btn-dim">
                                                         <em class="icon ni ni-plus"></em>
                                                         <span>
@@ -103,14 +109,12 @@
                                                 <td th:text="${ca.prixUnitaire}"></td>
                                                 <td th:text="${ca.quantite}"></td>
                                                 <td th:text="${ca.valeur}"></td>
-                                                <td class="h4"><a href="#"
-                                                                  th:attr="onclick='updateCHIAFF(' + ${ca.idChiffreAffaire} + ',' + ${ca.projet.idProjet} +')'">
+                                                <td class="h4"><a href="#" th:attr="onclick='updateCHIAFF(' + ${ca.idChiffreAffaire} + ',' + ${ca.projet.idProjet} +')'">
                                                     <em class="icon ni ni-pen-alt-fill"></em>
                                                 </a></td>
 
 
-                                                <td class="h4"><a href="#"
-                                                                  th:attr="onclick='supprimerChiffreAFF(\'' + ${ca.idChiffreAffaire} + '\')'">
+                                                <td class="h4"><a href="#" th:attr="onclick='supprimerChiffreAFF(\'' + ${ca.idChiffreAffaire} + '\')'">
                                                     <em class="icon ni ni-trash-fill"></em>
                                                 </a>
                                                 </td>
@@ -157,19 +161,18 @@
             </div>
             <div class="modal-body">
                 <form class="form-validate is-alter" id="AjouetChiffreaffaire">
-                    <p style="color:#a92222">Vous pouvez choisir soit de remplir le prix et la quantité pour calculer le
-                        montant, ou d'insérer directement le montant.</p>
+                    <p style="color:#a92222">Vous pouvez choisir soit de remplir le prix et la quantité pour calculer le montant, ou d'insérer directement le montant.</p>
 
                     <div class="form-group">
                         <label class="form-label" for="projet">Projet</label>
                         <div class="form-control-select">
                             <select class="form-control" id="projet" name="projet">
-                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
-                                        th:text="${p.nom}"></option>
+                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
                             </select>
                         </div>
 
                     </div>
+
 
 
                     <div class="form-group">
@@ -182,26 +185,25 @@
                     <div class="form-group">
                         <label class="form-label" for="prix">Prix Unitaire</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="prix" name="prixUnitaire"
-                                   placeholder="Entrer le prix unitaire">
+                            <input type="number" class="form-control" id="prix" name="prixUnitaire" placeholder="Entrer le prix unitaire">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="quantite">Quantité</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="quantite" name="quantite"
-                                   placeholder="Entrer le montant">
+                            <input type="number" class="form-control" id="quantite" name="quantite" placeholder="Entrer le montant">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="valeur">Montant</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="valeur" name="valeur"
-                                   placeholder="Entrer le montant">
+                            <input type="number" class="form-control" id="valeur" name="valeur" placeholder="Entrer le montant">
                         </div>
                     </div>
+
+
 
 
                     <div class="form-group">
@@ -219,7 +221,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modifier une charge Fixe</h5>
+                <h5 class="modal-title">Modifier Chiffre d'Affaire</h5>
                 <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <em class="icon ni ni-cross"></em>
                 </a>
@@ -231,8 +233,7 @@
                         <label class="form-label" for="Updateidprojet">Projet</label>
                         <div class="form-control-select">
                             <select class="form-control" id="Updateidprojet" name="projet">
-                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
-                                        th:text="${p.nom}"></option>
+                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
                             </select>
 
                             <input type="hidden" id="idchaff" name="idChiffreAffaire">
@@ -269,6 +270,7 @@
                             <input type="number" class="form-control" id="updatemontant" name="valeur">
                         </div>
                     </div>
+
 
 
                     <div class="form-group">

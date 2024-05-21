@@ -27,7 +27,8 @@ public interface ChargesFixesRepository extends JpaRepository<ChargesFixes,Integ
             @Param("projet") Projet projet
     );
 
-
+    @Query("SELECT SUM(cf.montant) FROM ChargesFixes cf WHERE cf.projet.idProjet = ?1 AND YEAR(cf.annee) = ?2")
+    Double getTotalByYearForProjet(int projetId, int year);
 
 
 

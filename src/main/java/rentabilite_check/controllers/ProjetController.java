@@ -1,6 +1,7 @@
 package rentabilite_check.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import rentabilite_check.entities.Projet;
 import rentabilite_check.entities.User;
 import rentabilite_check.repositories.ProjetRepository;
 import rentabilite_check.repositories.UserRepository;
+import rentabilite_check.services.ProjetService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,9 @@ public class ProjetController {
     private ProjetRepository projetRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ProjetService projetService;
 
     @GetMapping("/projets")
     public String projet(Model model) {
@@ -71,9 +76,17 @@ public class ProjetController {
                 p.getNom(),
                 p.getDescription(),
                 p.getImpotSociete(),
-                p.getDuree()
+                p.getDuree(),
+                p.getCaptial()
         );
 
         return "user/projets";
+    }
+
+
+    @GetMapping("projet/{id}/cashflows")
+    public ResponseEntity<Double> calculateCashFlows(@PathVariable("id") int id) {
+        double cashFlows = projetService.calculateCashFlows(id);
+        return ResponseEntity.ok(cashFlows);
     }
 }

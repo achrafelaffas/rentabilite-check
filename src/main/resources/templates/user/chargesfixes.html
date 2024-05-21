@@ -27,6 +27,7 @@
                                     class="icon ni ni-menu"></em></a>
                         </div>
                         <div th:replace="fragments/header-menu::header-menu"></div>
+
                         <!-- inclusion du tools pour afficher les information de l'utilisateur -->
                         <div th:replace="fragments/header-tools::header-tools"></div>
                     </div><!-- .nk-header-wrap -->
@@ -36,7 +37,12 @@
             <!-- content @s -->
             <div class="nk-content nk-content-fluid">
                 <div class="container-xl wide-xl">
+
                     <div class="nk-content-body">
+
+
+
+
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
@@ -44,6 +50,10 @@
                                     <div class="nk-block-des text-soft">
                                         <p>La charges fixes de vos projets</p>
                                     </div>
+
+
+
+
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
                                     <div class="toggle-wrap nk-block-tools-toggle">
@@ -52,10 +62,10 @@
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
                                                 <li>
-                                                    <select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
-                                                        <option value="0">Afficher Tout</option>
-                                                        <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
-                                                    </select>
+                                                <li><select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
+                                                    <option value="0">Afficher Tout</option>
+                                                    <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                                </select></li>
                                                 </li>
                                                 <li>
                                                     <button data-bs-toggle="modal" data-bs-target="#ajouterCHFModal"

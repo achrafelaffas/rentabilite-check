@@ -29,4 +29,7 @@ public interface ChargesVariablesRepository extends JpaRepository<ChargesVariabl
             @Param("projet") Projet projet
     );
 
+    @Query("SELECT SUM(cv.montant) FROM ChargesVariables cv WHERE cv.projet.idProjet = ?1 AND YEAR(cv.annee) = ?2")
+    Double getTotalByYearForProjet(int projetId, int year);
+
 }

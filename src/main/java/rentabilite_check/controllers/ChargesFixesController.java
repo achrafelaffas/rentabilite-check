@@ -1,6 +1,7 @@
 package rentabilite_check.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import rentabilite_check.entities.Projet;
 import rentabilite_check.entities.User;
 import rentabilite_check.repositories.ChargesFixesRepository;
 import rentabilite_check.repositories.ProjetRepository;
+import rentabilite_check.services.ProjetService;
 
 import java.util.List;
 
@@ -64,6 +66,14 @@ public class ChargesFixesController {
         return chargefixRepo.findByIdCF(idCF);
     }
 
+    /*@GetMapping("get-list-charges-fixes")
+    @ResponseBody
+    public List<Object[]> getTotalByYearForProjet(@RequestParam  int idProjet){
+        Projet projet = new Projet();
+        projet.setIdProjet(idProjet);
+        return chargefixRepo.getTotalByYearForProjet(projet);
+    }*/
+
     @PostMapping("update-CF")
     public String updateCF(@RequestBody ChargesFixes chargefixe) {
 
@@ -83,6 +93,7 @@ public class ChargesFixesController {
     public @ResponseBody List<ChargesFixes> getListCF() {
         return chargefixRepo.findAll();
     }
+
 
 
 }

@@ -16,6 +16,7 @@ public class Projet {
     private String description;
     private float impotSociete;
     private int duree;
+    private float captial;
     private float van;
     private float ip;
     private float drci;
@@ -38,6 +39,14 @@ public class Projet {
 
     @ManyToOne
     private User user;
+
+    public float getCaptial() {
+        return captial;
+    }
+
+    public void setCaptial(float captial) {
+        this.captial = captial;
+    }
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "projet")
@@ -182,4 +191,5 @@ public class Projet {
         // TODO: implement
         return 0;
     }
+
 }

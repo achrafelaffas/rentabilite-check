@@ -22,4 +22,5 @@ public interface InvestissementRepository extends JpaRepository<Investissement, 
 
     @Query("SELECT i.projet, sum(i.montantINV) FROM Projet p, Investissement i GROUP BY i.projet")
     List<Object[]> getProjectInvestmentSum();
+
 }
