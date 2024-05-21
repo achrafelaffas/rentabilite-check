@@ -26,6 +26,7 @@
                             <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
                                     class="icon ni ni-menu"></em></a>
                         </div>
+                        <div th:replace="fragments/header-menu::header-menu"></div>
                         <!-- inclusion du tools pour afficher les information de l'utilisateur -->
                         <div th:replace="fragments/header-tools::header-tools"></div>
                     </div><!-- .nk-header-wrap -->
@@ -35,91 +36,7 @@
             <!-- content @s -->
             <div class="nk-content nk-content-fluid">
                 <div class="container-xl wide-xl">
-
                     <div class="nk-content-body">
-
-
-
-
-                        <div class="nk-block">
-                            <div class="row g-gs">
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card h-99 bg-primary">
-                                        <div class="nk-cmwg nk-cmwg1">
-                                            <a href="/dashboard">
-                                                <div class="card-inner pt-3">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="flex-item">
-                                                            <div class="text-white d-flex flex-wrap">
-                                                                <span class="fs-2 me-1">Dashboard</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .card-inner --></a>
-                                        </div><!-- .nk-cmwg -->
-                                    </div><!-- .card -->
-                                </div><!-- .col -->
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card h-99 bg-info">
-                                        <div class="nk-cmwg nk-cmwg1">
-                                            <a href="/projets">
-                                                <div class="card-inner pt-3">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="flex-item">
-                                                            <div class="text-white d-flex flex-wrap">
-                                                                <span class="fs-2 me-1">Projets</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .card-inner --></a>
-                                        </div><!-- .nk-cmwg -->
-                                    </div><!-- .card -->
-                                </div><!-- .col -->
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card h-99 bg-warning">
-                                        <div class="nk-cmwg nk-cmwg1">
-                                            <a href="/cf">
-                                                <div class="card-inner pt-3">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="flex-item">
-                                                            <div class="text-white d-flex flex-wrap">
-                                                                <span class="fs-2 me-1">Charges Fixes</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .card-inner --></a>
-                                        </div><!-- .nk-cmwg -->
-                                    </div><!-- .card -->
-                                </div><!-- .col -->
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card h-99 bg-danger">
-                                        <div class="nk-cmwg nk-cmwg1">
-                                            <a href="/ca">
-                                                <div class="card-inner pt-3">
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="flex-item">
-                                                            <div class="text-white d-flex flex-wrap">
-                                                                <span class="fs-2 me-1">Chiffre d'Affaire</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .card-inner --></a>
-                                        </div><!-- .nk-cmwg -->
-                                    </div><!-- .card -->
-                                </div><!-- .col -->
-
-
-
-                            </div><!-- .row -->
-                        </div><!-- .nk-block -->
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
@@ -127,23 +44,6 @@
                                     <div class="nk-block-des text-soft">
                                         <p>La charges Variables de vos projets</p>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <label class="form-label" for="projets">Projets</label>
-                                            <div class="form-control-wrap ">
-                                                <div class="form-control-select" >
-                                                    <select class="form-control" id="projets" name="projets" onchange="selectProjet(this)">
-                                                        <option value="0"></option>
-                                                        <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
                                 </div><!-- .nk-block-head-content -->
                                 <div class="nk-block-head-content">
                                     <div class="toggle-wrap nk-block-tools-toggle">
@@ -151,6 +51,16 @@
                                            data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
                                         <div class="toggle-expand-content" data-content="pageMenu">
                                             <ul class="nk-block-tools g-3">
+                                                <li>
+                                                    <div class="form-control-select">
+                                                        <select class="form-control" id="projets" name="projets"
+                                                                onchange="selectProjet(this)">
+                                                            <option value="0"></option>
+                                                            <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
+                                                                    th:text="${p.nom}"></option>
+                                                        </select>
+                                                    </div>
+                                                </li>
                                                 <li>
                                                     <button data-bs-toggle="modal" data-bs-target="#ajouterCHVModal"
                                                             class="dropdown-toggle btn btn-primary btn-dim">
@@ -167,7 +77,6 @@
                                 </div><!-- .nk-block-head-content -->
                             </div><!-- .nk-block-between -->
                         </div><!-- .nk-block-head -->
-
                         <div class="nk-block">
                             <div class="row g-gs">
                                 <div class="card card-preview">
@@ -189,15 +98,17 @@
                                                 <td th:text="${cv.nom}">Intitulé</td>
                                                 <td th:text="${cv.montant}">Montant</td>
                                                 <td th:text="${cv.annee}">Annee</td>
-                                                <td class="h4"><a href="#" th:attr="onclick='updateCV(' + ${cv.idCV} + ',' + ${cv.projet.idProjet} +')'">
+                                                <td class="h4"><a href="#"
+                                                                  th:attr="onclick='updateCV(' + ${cv.idCV} + ',' + ${cv.projet.idProjet} +')'">
                                                     <em class="icon ni ni-pen-alt-fill"></em>
                                                 </a></td>
 
 
                                                 <td class="h4">
-                                                        <a href="#" th:attr="onclick='supprimerChargeVariable(' + ${cv.idCV} +')'">
-                                                    <em class="icon ni ni-trash-fill"></em>
-                                                </a>
+                                                    <a href="#"
+                                                       th:attr="onclick='supprimerChargeVariable(' + ${cv.idCV} +')'">
+                                                        <em class="icon ni ni-trash-fill"></em>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -246,7 +157,8 @@
                         <label class="form-label" for="idprojet">Projet</label>
                         <div class="form-control-select">
                             <select class="form-control" id="idprojet" name="projet">
-                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
+                                        th:text="${p.nom}"></option>
                             </select>
                         </div>
 
@@ -256,14 +168,16 @@
                     <div class="form-group">
                         <label class="form-label" for="nom">Intitulé</label>
                         <div class="form-control-wrap">
-                            <input type="text" class="form-control" id="nom" name="nom" placeholder="nom de charge fixe">
+                            <input type="text" class="form-control" id="nom" name="nom"
+                                   placeholder="nom de charge fixe">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="montant">Montant</label>
                         <div class="form-control-wrap">
-                            <input type="number" class="form-control" id="montant" name="montant" placeholder="Entrer le montant">
+                            <input type="number" class="form-control" id="montant" name="montant"
+                                   placeholder="Entrer le montant">
                         </div>
                     </div>
 
@@ -273,7 +187,6 @@
                             <input type="date" class="form-control" id="annee" name="annee">
                         </div>
                     </div>
-
 
 
                     <div class="form-group">
@@ -303,7 +216,8 @@
                         <label class="form-label" for="Updateidprojet">Projet</label>
                         <div class="form-control-select">
                             <select class="form-control" id="Updateidprojet" name="projet">
-                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}" th:text="${p.nom}"></option>
+                                <option th:each="p:${listeprojets}" th:value="${p.idProjet}"
+                                        th:text="${p.nom}"></option>
                             </select>
 
                             <input type="hidden" id="idCV" name="idCV">
@@ -333,7 +247,6 @@
                             <input type="date" class="form-control" id="updateannee" name="annee">
                         </div>
                     </div>
-
 
 
                     <div class="form-group">

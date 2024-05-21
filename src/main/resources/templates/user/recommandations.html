@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <!-- Titre de la page  -->
+    <title>Recommandation - Rentabilité Check</title>
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" th:href="@{/css/dashlite.css}">
+</head>
+<body class="nk-body ui-rounder has-sidebar">
+<div class="nk-app-root">
+    <!-- main @s -->
+    <div class="nk-main ">
+        <!-- sidebar @s -->
+        <!-- inclusion du sidebar -->
+        <div th:replace="~{fragments/sidebar::sidebar}"></div>
+        <!-- sidebar @e -->
+        <!-- wrap @s -->
+        <div class="nk-wrap ">
+            <!-- main header @s -->
+            <div class="nk-header is-light nk-header-fixed is-light">
+                <div class="container-xl wide-xl">
+                    <div class="nk-header-wrap">
+                        <div class="nk-menu-trigger d-xl-none ms-n1 me-3">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em
+                                    class="icon ni ni-menu"></em></a>
+                        </div>
+                        <div th:replace="fragments/header-menu::header-menu"></div>
+                        <!-- inclusion du tools pour afficher les information de l'utilisateur -->
+                        <div th:replace="fragments/header-tools::header-tools"></div>
+                    </div><!-- .nk-header-wrap -->
+                </div><!-- .container-fliud -->
+            </div>
+            <!-- main header @e -->
+            <!-- content @s -->
+            <div class="nk-content nk-content-fluid">
+                <div class="container-xl wide-xl">
+                    <div class="nk-content-body">
+                        <div class="card">
+                            <div class="nk-editor">
+                                <div class="nk-editor-header">
+                                    <div class="nk-editor-title">
+                                        <h4 class="me-3 mb-0 line-clamp-1">Recommandations</h4>
+                                    </div>
+                                    <div class="nk-editor-tools d-none d-xl-flex">
+                                        <ul class="d-inline-flex gx-3">
+                                            <li style="width: 200px">
+                                                <div class="form-control-select">
+                                                    <select class="form-control" id="projets" name="projets"
+                                                            onchange="selectProjet(this)">
+                                                        <option value="0">La liste des projet</option>
+                                                        <option th:each="p:${projets}" th:value="${p.idProjet}"
+                                                                th:text="${p.nom}"></option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="nk-editor-main">
+                                    <div class="nk-editor-body">
+                                        <div class="tinymce-toolbar nk-editor-style-clean nk-editor-full p-4"
+                                             id="editor-v1"></div> <!-- .js-editor -->
+                                    </div><!-- .nk-editor-body -->
+                                </div><!-- .nk-editor-main -->
+                            </div><!-- .nk-editor -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content @e -->
+            <!-- footer @s -->
+            <div th:replace="~{fragments/footer::footer}"></div>
+            <!-- footer @e -->
+        </div>
+        <!-- wrap @e -->
+    </div>
+    <!-- main @e -->
+</div>
+<!-- app-root @e -->
+<!-- select region modal -->
+<!-- JavaScript -->
+<script type="text/javascript" th:src="@{/js/bundle.js}"></script>
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+<script type="text/javascript" th:src="@{/js/projets.js}"></script>
+<script type="text/javascript" th:src="@{/js/editors.js}"></script>
+<script type="text/javascript" th:src="@{/js/editors/tinymce.js}"></script>
+<link rel="stylesheet" th:href="@{/css/editors/tinymce.css}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+</body>
+</html>

@@ -21,8 +21,6 @@ function InsererProjet() {
     }
 }
 
-
-
 function updateProjet(idProjet) {
     axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(res => {
         const projet = res.data;
@@ -34,8 +32,6 @@ function updateProjet(idProjet) {
         $('#updateProjetModal').modal('show');
     }).catch(err => console.log(err))
 }
-
-
 
 function sendProjetUpdate() {
 
@@ -59,8 +55,6 @@ function sendProjetUpdate() {
         });
     }
 }
-
-
 
 async function updateTableView() {
 
