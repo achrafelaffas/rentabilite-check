@@ -1,39 +1,78 @@
 function getTotalCashFlow(idProjet) {
     axios.get(`/projet/${idProjet}/cashflows`)
         .then(res => {
-            const totalCashFlow = res.data;
+            console.log(res)
+            const totalCashFlow = res.data.reduce((acc, curr) => acc + curr, 0);  // assuming res.data is an array of cash flows
             const tdTotalCashFlow = document.getElementById(`totalCashFlow_${idProjet}`);
-            axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(resprojet => {
-                let projet = resprojet.data;
-                let capital=projet.captial;
-                //console.log(totalCashFlow);
-                //console.log(capital);
+            const tdVAN = document.getElementById(`van_${idProjet}`);
+            const tdIP = document.getElementById(`ip_${idProjet}`);
+            const tdDRCI = document.getElementById(`drci_${idProjet}`);
+            axios.get(`get-projet-a-modifier?idProjet=${idProjet}`).then(ress => {
+                let projet = ress.data;
+                let capital = projet.captial;
+                console.log("capital :"+capital);
 
 
-                let van=totalCashFlow-capital;
-                //console.log(van);
-                let ip=1+(van/capital);
-                //console.log(ip);
 
-                if(van > 0 && ip >1){
-                    tdTotalCashFlow.innerText = "Le projet est Rentable";
+                let van = totalCashFlow - capital;
+                console.log("van :"+capital);
+                let ip = 1 + (van / capital);
+                console.log("ip :"+capital);
+
+
+                // Assuming DRSI is calculated as the number of periods it takes to break even
+                // You would need the specific cash flows to calculate this properly
+                let cumulativeCashFlow = 0;
+                let drci = 0;
+                for (let i = 0; i < res.data.length; i++) {
+                    cumulativeCashFlow += res.data[i];
+                    if (cumulativeCashFlow >= capital) {
+                        drci = i + 1; // assuming i is zero-based index
+                        break;
+                    }
                 }
-                else{
-                    tdTotalCashFlow.innerText = "Le projet non Rentable";
 
+                // Update the DOM with the calculated values
+                tdTotalCashFlow.innerHTML = `
+                    <p>totalCashFlow: ${totalCashFlow.toFixed(2)}</p>
+                    <p>VAN: ${van.toFixed(2)}</p>
+                    <p>IP: ${ip.toFixed(2)}</p>
+                    <p>DRCI: ${drci}</p>
+                `;
+                tdIP.innerHTML=`<p>${ip.toFixed(2)}</p>`
+                tdVAN.innerHTML=`<p>${van.toFixed(2)}</p>`
+                tdDRCI.innerHTML=`<p>${drci}</p>`
+
+                console.log(projet.duree);
+                console.log(drci);
+
+                if (van > 0 && ip > 1 && drci < projet.duree) {
+                    tdTotalCashFlow.innerHTML += "<p class=\"badge badgedot bg-success\">Le projet est Rentable</p>";
+                } else {
+                    tdTotalCashFlow.innerHTML += "<p class=\"badge badge-dot bg-danger\">Le projet est non Rentable</p>";
                 }
 
+                axios.post('/insertVANIPDRCI', null, {
+                    params: {
+                        idProjet: idProjet,
+                        van: van,
+                        ip: ip,
+                        drci: drci
+                    }
+                }).then(async () => {
+                    //await updateTableView();
+                }).catch(error => {
+                    console.error("Error inserting VAN, IP, and DRCI:", error);
+                });
 
 
-
-                })
-
-
+            });
         })
         .catch(error => {
             console.error(error);
         });
 }
+
 
 
 function InsererProjet() {

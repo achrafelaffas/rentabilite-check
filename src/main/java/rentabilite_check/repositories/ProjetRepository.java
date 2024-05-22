@@ -22,4 +22,9 @@ public interface ProjetRepository extends JpaRepository<Projet, Integer> {
     @Query("SELECT DISTINCT YEAR(ca.annee) FROM ChiffreAffaire ca WHERE ca.projet.idProjet = ?1")
     List<Integer> findYearsByProjetId(int projetId);
 
+    @Modifying
+    @Transactional
+    @Query("update Projet p set p.van = :van, p.ip = :ip, p.drci = :drci where p.idProjet = :idProjet")
+    void updateProjetCalculations(@Param("idProjet") int idProjet, @Param("van") double van, @Param("ip") double ip, @Param("drci") int drci);
+
 }

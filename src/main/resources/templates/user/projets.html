@@ -94,9 +94,9 @@
                                                 <td th:text="${projet.captial}"></td>
                                                 <td th:text="${projet.impotSociete}"></td>
                                                 <td th:text="${projet.duree}"></td>
-                                                <td th:text="${projet.van}"></td>
-                                                <td th:text="${projet.ip}"></td>
-                                                <td th:text="${projet.drci}"></td>
+                                                <td th:id="'van_' + ${projet.idProjet}" th:text="${projet.van}"></td>
+                                                <td th:id="'ip_' + ${projet.idProjet}" th:text="${projet.ip}"></td>
+                                                <td th:id="'drci_' + ${projet.idProjet}" th:text="${projet.drci}"></td>
                                                 <td>
                                                     <button class="btn btn-primary" th:attr="onclick='getTotalCashFlow(' + ${projet.idProjet} +')'">
                                                         Etudier La rentabilite

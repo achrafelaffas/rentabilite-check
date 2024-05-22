@@ -84,9 +84,30 @@ public class ProjetController {
     }
 
 
-    @GetMapping("projet/{id}/cashflows")
-    public ResponseEntity<Double> calculateCashFlows(@PathVariable("id") int id) {
-        double cashFlows = projetService.calculateCashFlows(id);
+    @GetMapping("/projet/{id}/cashflows")
+    public ResponseEntity<List<Double>> calculateCashFlows(@PathVariable("id") int id) {
+        List<Double> cashFlows = projetService.calculateCashFlows(id);
+        if (cashFlows == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(cashFlows);
     }
+
+
+    @PostMapping("/insertVANIPDRCI")
+    public ResponseEntity<String> insertVANIPDRCI(@RequestParam int idProjet,
+                                                  @RequestParam double van,
+                                                  @RequestParam double ip,
+                                                  @RequestParam int drci) {
+        try {
+            projetRepository.updateProjetCalculations(idProjet, van, ip, drci);
+            return ResponseEntity.ok("Calculations inserted successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Failed to insert calculations: " + e.getMessage());
+        }
+    }
+
+
+
+
 }

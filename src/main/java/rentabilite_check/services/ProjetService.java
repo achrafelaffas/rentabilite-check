@@ -38,17 +38,19 @@ public class ProjetService {
         return (chiffreAffaire - chargesFixes - chargesVariables) * (1 - projet.getImpotSociete());
     }
 
-    public double calculateCashFlows(int projetId) {
+
+
+    public List<Double> calculateCashFlows(int projetId) {
         //Projet projet = projetRepository.findById(projetId).orElse(null);
         List<Integer> years = projetRepository.findYearsByProjetId(projetId);
 
-        return years.stream().mapToDouble(year -> {
+        return years.stream().map(year -> {
             //double caf = calculateCAF(projetId, year);
             //double tauxActualisation = projet.getInvestissement() != null ? projet.getInvestissement().getTauxActualisation() : 0;
             //int n = year - years.get(0) + 1; // assuming years are in order
             //return caf * Math.pow(1 + tauxActualisation, -n);
             return calculateCAF(projetId, year);
-        }).sum();
+        }).collect(Collectors.toList());
     }
 
 }
